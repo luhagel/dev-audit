@@ -36,6 +36,13 @@ group :development, :test do
 end
 
 group :development do
+  #vulnarability testing
+  gem "brakeman"
+  #better error display
+  gem "awesome_print", require:"ap"
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "pry-rails"
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
