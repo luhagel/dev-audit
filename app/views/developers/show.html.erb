@@ -1,10 +1,13 @@
 <h1 class="text-xs-center">Overview: <%= @developer.name %></h1>
-<div class="row quickinfo">
+<div class="row quickinfo card card-block">
   <div class="col-xs-4">
     Github Profile:
   </div>
   <div class="col-cs-8">
     <a href="https://github.com/<%= @developer.username %>" target=_blank><%= @developer.username %></a>
   </div>
+</div>
+<div class="row">
+  <%== @contribGraph %>
 </div>
 <a href="<%= developers_url %>" class="btn btn-primary">Back</a>

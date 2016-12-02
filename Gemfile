@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'nokogiri'
+
 gem 'bootstrap', '~> 4.0.0.alpha5'
 
 group :development, :test do

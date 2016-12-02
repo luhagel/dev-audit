@@ -1,4 +1,6 @@
 class DevelopersController < ApplicationController
+  include DevelopersHelper
+
   def index
     @developers = Developer.all
   end
@@ -16,6 +18,7 @@ class DevelopersController < ApplicationController
 
   def show
     @developer = Developer.find(params[:id])
+    @contribGraph = getContribGraph(@developer.username)
   end
 
   private
