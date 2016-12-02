@@ -3,9 +3,9 @@ class DevelopersController < ApplicationController
 
   def index
     @developers = Developer.all
-    @developers.each do |dev|
-      dev.git_graph_html = getContribGraph(dev.username)
-    end
+    # @developers.each do |dev|
+    #   dev.git_graph_html = getContribGraph(dev.username)
+    # end
   end
 
   def new

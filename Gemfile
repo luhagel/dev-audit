@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'nokogiri'
 
+gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
 gem 'bootstrap', '~> 4.0.0.alpha5'
 
 group :development, :test do

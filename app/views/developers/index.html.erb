@@ -1,12 +1,10 @@
 <h1>Product Class '18</h1>
 <div class="row">
   <% @developers.each do |dev| %>
-    <div class="col-md-6 col-xs-12">
-      <div class="card">
-        <div class="card-header text-xs-center">
+    <div class="col-lg-4 col-md-6 col-xs-12">
+      <div class="dev-card">
+        <div class="dev-card-content">
           <%= link_to dev.name, dev %>
-        </div>
-        <div class="card-block">
           <%== dev.git_graph_html %>
         </div>
       </div>
@@ -14,5 +12,5 @@
   <% end %>
 </div>
 <div class="row">
-  <%= link_to 'Add', new_developer_path %>
+  <%= link_to 'Add', new_developer_path, class: "btn btn-block btn-secondary" %>
 </div>
