@@ -36,10 +36,15 @@ module DevelopersHelper
   end
 
   def updateAllDeveloperInfo()
-    @developers = Developer.all 
+    @developers = Developer.all
+    save_counter = 0
     @developers.each do |dev|
       dev.git_graph_html = getContribGraph(dev.username)
-    end
+      if dev.save
+        save_counter += 1
+      end
+    end 
+    puts "SUCCESS: Updated " + String(save_counter) + "/" + String(@developers.count) + " Developers!"
   end
 
   def updateDeveloperInfo(dev)
