@@ -10,7 +10,23 @@ module DevelopersHelper
     graph.css('rect').each do |r|
       r.attributes['width'].value = '6'
       r.attributes['height'].value = '6'
-      r.attributes['y'].value = String(Integer(r.attributes['y'].value) / 12 * 6)   
+      r.attributes['y'].value = String(Integer(r.attributes['y'].value) / 12 * 6)
+
+      #normalize colors
+      r.attributes['fill'].value = case Integer(r.attributes['data-count'].value)
+      when 0
+        "#eeeeee"
+      when 1..5
+        "#d6e685"
+      when 6..10
+        "#8cc665"
+      when 11..15
+        "#44a340"
+      when 16..20
+        "#1e6823"
+      else
+        "#000000"
+      end
     end
     #remove space between rects
     x_offset = 0
