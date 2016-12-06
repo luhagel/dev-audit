@@ -3,9 +3,6 @@ class DevelopersController < ApplicationController
 
   def index
     @developers = Developer.all
-    # @developers.each do |dev|
-    #   dev.git_graph_html = getContribGraph(dev.username)
-    # end
   end
 
   def new
@@ -14,11 +11,13 @@ class DevelopersController < ApplicationController
 
   def create
     @developer = Developer.new(developer_params)
-    gitGraph = getContribGraph(@developer.username)
-    @developer.git_graph_html = gitGraph
-    if @developer.save
-      redirect_to @developer
-    end
+    #if !checkFor404("https://github.com/" + @developer.username + ":80")
+      gitGraph = getContribGraph(@developer.username)
+      @developer.git_graph_html = gitGraph
+      if @developer.save
+        redirect_to @developer
+      end
+   # end
   end
 
   def show

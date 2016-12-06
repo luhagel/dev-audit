@@ -25,4 +25,30 @@ module DevelopersHelper
     raw(graph)
   end
 
+  def checkFor404(url)
+    uri = URI(url)
+    Net::HTTP.use_ssl = true
+    Net::HTTP.use_.start(uri.host, uri.port) do |http|
+      request = Net::HTTP::Head.new uri.request_uri
+      response = http.request request
+      return response == Net::HTTPNotFound
+    end
+  end
+
+  def updateAllDeveloperInfo()
+    @developers = Developer.all
+    save_counter = 0
+    @developers.each do |dev|
+      dev.git_graph_html = getContribGraph(dev.username)
+      if dev.save
+        save_counter += 1
+      end
+    end 
+    puts "SUCCESS: Updated " + String(save_counter) + "/" + String(@developers.count) + " Developers!"
+  end
+
+  def updateDeveloperInfo(dev)
+    dev.git_graph_html = getContribGraph(dev.username)
+  end
+
 end
