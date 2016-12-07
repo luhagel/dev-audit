@@ -1,7 +1,7 @@
 <h1><%= @team.name %></h1>
 <div class="row">
   <% @developers.each do |dev| %>
-    <div class="col-xl-4 col-lg-12">
+    <div class="col s12 m6 l4">
       <div class="dev-card">
         <div class="dev-card-content">
           <%= link_to dev.name, [@team, dev] %>

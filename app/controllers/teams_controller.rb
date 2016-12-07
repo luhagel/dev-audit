@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
-    @developers = Developer.all
+    @developers = @team.developers
   end
 
   def new

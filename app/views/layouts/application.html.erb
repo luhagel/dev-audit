@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>DevAudit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,13 +10,15 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-light bg-faded">
-    <a class="navbar-brand" href="#">
-      Dev Audit
-    </a>
+  <nav>
+  <div class="nav-wrapper">
+  <a class="brand-logo center" href="#">
+    Dev Audit
+  </a>
+  </div>
   </nav>
   <div class="container">
-    <%= yield %>
+   <%= yield %>
   </div>
   </body>
 </html>
