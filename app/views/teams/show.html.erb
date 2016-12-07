@@ -1,2 +1,16 @@
-<h1>Teams#show</h1>
-<p>Find me in app/views/teams/show.html.erb</p>
+<h1><%= @team.name %></h1>
+<div class="row">
+  <% @developers.each do |dev| %>
+    <div class="col-xl-4 col-lg-12">
+      <div class="dev-card">
+        <div class="dev-card-content">
+          <%= link_to dev.name, [@team, dev] %>
+          <%== dev.git_graph_html %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <%= link_to 'Add', new_team_developer_path(@team), class: "btn btn-block btn-secondary" %>
+</div>
