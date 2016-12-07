@@ -10,20 +10,26 @@
   </head>
 
   <body>
-  <nav>
-  <div class="nav-wrapper">
-  <a class="brand-logo center" href="#">
-    Dev Audit
-  </a>
-  <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="#" class="disabled">Login/Sign Up</a></li>
-        <li><%= link_to "Teams Overview", teams_path %></li>
-      </ul>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a class="brand-logo center" href="#">
+          Dev Audit
+        </a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><%= link_to "Teams Overview", teams_path %></li>
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><%= link_to "Login/Signup", new_user_path %>></li>
+        </ul>
+      </div>
+    </nav>
   </div>
-  </nav>
-  <div class="container">
-   <%= yield %>
-  </div>
+  <main>>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </main>
   <footer class="page-footer">
     <div class="footer-copyright">
       <div class="container">
