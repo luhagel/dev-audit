@@ -1,0 +1,18 @@
+<h1 class="center">Sign Up</h1>
+<p class="center">Take the first step to get a better overview of your team members and or applicants!</p>
+<%= form_for @user do |u| %>
+  <%= u.label :name, "Your Name:" %>
+  <%= u.text_field :name, placeholder: "How do you want us to call you?" %>
+
+  <%= u.label :email, "Your email address" %>
+  <%= u.email_field :email %>
+
+  <%= u.label :password, "Pick a strong Password" %>
+  <%= u.password_field :password %>
+
+  <%= u.label :password_confirmation, "Password Confirmation" %>
+  <%= u.password_field :password_confirmation %>
+
+  <%= u.submit "Register!", class: "waves-effect waves-light btn" %> 
+<% end %>
+

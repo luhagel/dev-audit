@@ -1,6 +1,6 @@
 <h1 class="center">Create a new Team</h1>
 
 <%= form_for @team do |team| %>
-  <p><%= team.text_field :name, placeholder: "How do you want to call your Team?", class: "form-control" %></p> 
+  <p><%= team.text_field :name, placeholder: "How do you want to call your Team?" %></p> 
   <%= team.submit "Add", class: "waves-effect waves-light btn" %>
 <% end %>

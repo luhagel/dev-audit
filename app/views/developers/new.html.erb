@@ -1,7 +1,7 @@
 <h1>Add a new developer</h1>
 
 <%= form_for [@team, @developer] do |dev| %>
-  <p><%= dev.text_field :name, placeholder: "Name", class: "form-control" %></p> 
-  <p><%= dev.text_field :username, placeholder: "GitHub Username", class: "form-control" %></p>
-  <%= dev.submit "Add", class: "btn btn-default" %>
+  <p><%= dev.text_field :name, placeholder: "Name" %></p> 
+  <p><%= dev.text_field :username, placeholder: "GitHub Username" %></p>
+  <%= dev.submit "Add", class: "btn waves-effect wave-light" %>
 <% end %>
