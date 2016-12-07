@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206194459) do
+ActiveRecord::Schema.define(version: 20161207021530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,11 +24,9 @@ ActiveRecord::Schema.define(version: 20161206194459) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.integer  "developers_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["developers_id"], name: "index_teams_on_developers_id", using: :btree
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "teams", "developers", column: "developers_id"
 end
