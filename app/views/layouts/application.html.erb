@@ -25,8 +25,15 @@
       </div>
     </nav>
   </div>
-  <main>>
+  <main>
     <div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="card teal white-text">
+          <div class="card-content">
+            <%= message %>
+          </div>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
   </main>
