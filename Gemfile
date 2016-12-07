@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'nokogiri'
 
 gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
-gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'materialize-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
