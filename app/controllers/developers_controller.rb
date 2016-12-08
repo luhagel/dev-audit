@@ -1,6 +1,8 @@
 class DevelopersController < ApplicationController
   include DevelopersHelper
 
+  before_action :require_login
+
   def index
     @developers = Developer.all
   end
@@ -32,5 +34,12 @@ class DevelopersController < ApplicationController
   private
   def developer_params
     params.require(:developer).permit(:name, :username, :git_graph_html, :team_id)
+  end
+
+  def require_login
+    unless logged_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to login_url
+    end
   end
 end

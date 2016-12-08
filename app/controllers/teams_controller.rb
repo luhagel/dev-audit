@@ -1,6 +1,8 @@
 class TeamsController < ApplicationController
+  before_action :require_login
+
   def index
-    @teams = Team.all
+    @teams = current_user.teams
   end
 
   def show
@@ -14,6 +16,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.create(team_params)
+    @team.user = current_user
     if @team.save
       redirect_to @team
     else
@@ -23,6 +26,13 @@ class TeamsController < ApplicationController
 
   private
   def team_params
-    params.require(:team).permit(:name)
+    params.require(:team).permit(:name, :user_id)
+  end
+
+  def require_login
+    unless logged_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to login_url
+    end
   end
 end
