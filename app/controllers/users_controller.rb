@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to Dev Audit!"
       redirect_to teams_path
     else
-      flash[:error] = "Something went wrong!"
+      flash.now[:error] = "Something went wrong!"
       render 'new'
     end
   end
