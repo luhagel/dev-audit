@@ -25,9 +25,10 @@
         </ul>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if logged_in? %>
-            <li><%= link_to "Logout", logout_path, method: :delete %></li>
+            <li>Hey there, <b><%= current_user.name %></b>!</li>
+            <li><%= link_to "Logout", logout_path, method: :delete, class: "btn waves-effect wave-light" %></li>
           <% else %>
-            <li><%= link_to "Login/Signup", login_path %></li>
+            <li><%= link_to "Login/Signup", login_path, class: "btn waves-effect wave-light" %></li>
           <% end %>
         </ul>
       </div>
