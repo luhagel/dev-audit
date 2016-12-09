@@ -29,6 +29,8 @@
 <% end %>
 <% if logged_in? %>
   <div class="row">
-    <%= link_to 'Add', new_team_developer_path(@team), class: "btn btn-block btn-secondary" %>
+    <div class="col s12 m6 offset-m3">
+      <%= link_to 'Add', new_team_developer_path(@team), class: "btn btn-block btn-secondary" %>
+    </div>
   </div>
 <% end %>
