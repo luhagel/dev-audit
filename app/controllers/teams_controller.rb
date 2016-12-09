@@ -7,11 +7,12 @@ class TeamsController < ApplicationController
   end
 
   def show
-    if !logged_in?
-      redirect_to login_url
-    end
     @team = Team.find(params[:id])
-    if !is_owner?(@team)
+
+    if !logged_in?  && !@team.is_public
+      flash[:error] = "You must be logged in to view this private team!"
+      redirect_to login_url
+    elsif !is_owner?(@team) && !@team.is_public
       render 'shared/not_owner'
     else 
       @developers = @team.developers
