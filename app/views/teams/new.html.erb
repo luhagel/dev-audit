@@ -1,9 +1,12 @@
 <h1 class="center">Create a new Team</h1>
-
-<%= form_for @team do |team| %> 
-  <p><%= team.text_field :name, placeholder: "How do you want to call your Team?" %></p> 
-  <p><%= team.check_box :is_public, id:"is_public" %>
-  <%= team.label "Make the team public?", for:"is_public", id:"is_public" %></p>
-  <br>
-  <%= team.submit "Create", class: "waves-effect waves-light btn" %>
-<% end %>
+<div class="row">
+  <div class="col s12 m8 offset-m2">
+    <%= form_for @team do |team| %> 
+      <p><%= team.text_field :name, placeholder: "How do you want to call your Team?" %></p> 
+      <%= team.check_box :is_public, id:"is_public" %>
+      <%= team.label "Make the team public?", for:"is_public", id:"is_public" %>
+      <br><br>
+      <%= team.submit "Create", class: "waves-effect waves-light btn" %>
+    <% end %>
+  </div>
+</div>
