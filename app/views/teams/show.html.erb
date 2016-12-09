@@ -11,6 +11,24 @@
     </div>
   <% end %>
 </div>
+<% if @developers.count == 0 %>
 <div class="row">
-  <%= link_to 'Add', new_team_developer_path(@team), class: "btn btn-block btn-secondary" %>
+  <div class="col s12 m8 offset-m2">
+    <div class="card">
+      <div class="card-content">
+        <h4 class="center">There is nothing here yet!</h4>
+        <% if logged_in? %>
+          <p class="center">Start by adding your first develper below!</p>
+        <% else %>
+          <p class="center">The team owner hasn't added any developers yet, check back later!</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+<% end %>
+<% if logged_in? %>
+  <div class="row">
+    <%= link_to 'Add', new_team_developer_path(@team), class: "btn btn-block btn-secondary" %>
+  </div>
+<% end %>
