@@ -7,6 +7,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% #Materialize Icons %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
 
   <body>
@@ -17,7 +19,9 @@
           Dev Audit
         </a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-          <li><%= link_to "Teams Overview", teams_path %></li>
+          <% if logged_in? %>
+            <li><%= link_to "Teams Overview", teams_path %></li>
+          <% end %>
         </ul>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if logged_in? %>

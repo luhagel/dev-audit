@@ -1,13 +1,21 @@
 class TeamsController < ApplicationController
-  before_action :require_login
+  include TeamsHelper
+  before_action :require_login, only: [:index, :new, :create]
 
   def index
     @teams = current_user.teams
   end
 
   def show
+    if !logged_in?
+      redirect_to login_url
+    end
     @team = Team.find(params[:id])
-    @developers = @team.developers
+    if !is_owner?(@team)
+      render 'shared/not_owner'
+    else 
+      @developers = @team.developers
+    end
   end
 
   def new
@@ -26,7 +34,7 @@ class TeamsController < ApplicationController
 
   private
   def team_params
-    params.require(:team).permit(:name, :user_id)
+    params.require(:team).permit(:name, :user_id, :is_public)
   end
 
   def require_login
