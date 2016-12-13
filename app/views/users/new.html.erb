@@ -2,7 +2,7 @@
 <p class="center">Take the first step to get a better overview of your team members and or applicants!</p>
 <%= form_for @user do |u| %>
   <%= u.label :name, "Your Name:" %>
-  <%= u.text_field :name, placeholder: "How do you want us to call you?" %>
+  <%= u.text_field :name, placeholder: "Full Name" %>
 
   <%= u.label :email, "Your email address" %>
   <%= u.email_field :email %>
