@@ -13,22 +13,19 @@ class DevelopersController < ApplicationController
   end
 
   def create
-    @team = Team.find(params[:team_id])
-    @developer = Developer.new(developer_params)
-    @developer.team = @team
-    #if !checkFor404("https://github.com/" + @developer.username + ":80")
-      gitGraph = getContribGraph(@developer.username)
-      @developer.git_graph_html = gitGraph
-      if @developer.save
-        redirect_to [@team, @developer]
-      end
-   # end
+  @team = Team.find(params[:team_id])
+  @developer = Developer.new(developer_params)
+  @developer.team = @team
+    gitGraph = getContribGraph(@developer.username)
+    @developer.git_graph_html = gitGraph
+    if @developer.save
+      redirect_to [@team, @developer]
+    end
   end
 
   def show
     @team = Team.find(params[:team_id])
     @developer = Developer.find(params[:id])
-    #@developer.git_graph_html = getContribGraph(@developer.username)
   end
 
   private
