@@ -15,7 +15,7 @@ class TeamsController < ApplicationController
     elsif !is_owner?(@team) && !is_public?(@team)
       render 'shared/not_owner'
     else 
-      @developers = @team.developers
+      @developers = @team.developers.sort { |a,b| a.name.downcase <=> b.name.downcase }
     end
   end
 
