@@ -6,7 +6,11 @@
         <h5 class="header col s12 light">Keep track your your applicants side projects.</h5>
       </div>
       <div class="row center">
+      <% if logged_in? %>
+        <%= link_to "View your Teams!", teams_path, class: "btn waves-effect wave-light" %>
+      <% else %>
         <%= link_to "Start NOW!", signup_path, class: "btn waves-effect wave-light" %>
+      <% end %>
       </div>
       <br><br>
 
