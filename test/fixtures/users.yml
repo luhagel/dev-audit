@@ -3,7 +3,9 @@
 one:
   name: TestUser
   email: test@example.com
+  password_digest: $2a$10$KtoQZ7s.WqjXyfxKCzp4C.bpa6X2QH8gxtgHtsQBiJqGtU4vBLNx.
 
 two:
   name: TestUser2
   email: test2@example.com
+  password_digest: $2a$10$KtoQZ7s.WqjXyfxKCzp4C.bpa6X2QH8gxtgHtsQBiJqGtU4vBLNx.
