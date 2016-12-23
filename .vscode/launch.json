@@ -10,16 +10,6 @@
       "args": [
         "server"
       ]
-    },
-    {
-      "name": "Minitest",
-      "type": "Ruby",
-      "request": "launch",
-      "cwd": "${workspaceRoot}",
-      "program": "${workspaceRoot}/bin/rails",
-      "args": [
-        "test"
-      ]
     }
   ]
 }
