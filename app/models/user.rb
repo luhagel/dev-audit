@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :teams
 
   has_secure_password
-  validates :password, length: { minimum: 6 }, allow_nil: true
+  validates :password, presence: true, length: { minimum: 6 }
 end
 
 def User.digest(string)
