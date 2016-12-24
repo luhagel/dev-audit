@@ -10,46 +10,44 @@
   </head>
 
   <body>
-  <div class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper">
-        <a class="brand-logo center" href="/">
+    <nav class="nav">
+      <div class="nav-left nav-menu">
+          <% if logged_in? %>
+          <span class="nav-item">
+            <a><%= link_to "Overview", teams_path %></a>
+            </span>
+          <% end %>
+      </div>
+      <div class="nav-center">
+        <a class="nav-item is-brand" href="/">
           Dev Audit
         </a>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-          <% if logged_in? %>
-            <li><%= link_to "Overview", teams_path %></li>
-          <% end %>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <% if logged_in? %>
-            <li>Hey there, <b><%= current_user.name %></b>!</li>
-            <li><%= link_to "Logout", logout_path, method: :delete, class: "btn waves-effect wave-light" %></li>
-          <% else %>
-            <li><%= link_to "Login/Signup", login_path, class: "btn waves-effect wave-light" %></li>
-          <% end %>
-        </ul>
+      </div>
+      <div class="nav-right">
+      <span class="nav-item">
+        <% if logged_in? %>
+          Hey there, <b><%= current_user.name %></b>!
+          <a><%= link_to "Logout", logout_path, method: :delete, class: "button is-primary" %></a>
+        <% else %>
+          <a><%= link_to "Login/Signup", login_path, class: "button is-primary" %></a>
+        <% end %>
+        </span>
       </div>
     </nav>
-  </div>
   <main>
     <div class="container">
       <% flash.each do |message_type, message| %>
-        <div class="card teal white-text">
-          <div class="card-content">
-            <%= message %>
-          </div>
+        <div class="message">
+          <%= message %>
         </div>
       <% end %>
       <%= yield %>
     </div>
   </main>
-  <footer class="page-footer">
-    <div class="footer-copyright">
+  <footer class="footer">
       <div class="container">
         © 2016 Luca Hagel | DevAudit <%= ENV["HEROKU_RELEASE_VERSION"]%>
       </div>
-    </div>
   </footer>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
