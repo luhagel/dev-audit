@@ -11,24 +11,5 @@
  * It is generally better to create a new file per style scope.
  *
  */
-@import "materialize/components/color";
-$primary-color: color("orange", "darken-1") !default;
-$secondary-color: color("white", "base") !default;
-@import "materialize";
 
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
-.icon-block {
-  padding: 0 15px;
-}
-.icon-block .material-icons {
-	font-size: inherit;
-}
+@import "bulma";
