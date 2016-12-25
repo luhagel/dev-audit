@@ -10,45 +10,23 @@
   </head>
 
   <body>
-    <nav class="nav">
-      <div class="nav-left nav-menu">
-          <% if logged_in? %>
-          <span class="nav-item">
-            <a><%= link_to "Overview", teams_path %></a>
-            </span>
-          <% end %>
-      </div>
-      <div class="nav-center">
-        <a class="nav-item is-brand" href="/">
-          Dev Audit
-        </a>
-      </div>
-      <div class="nav-right">
-      <span class="nav-item">
-        <% if logged_in? %>
-          Hey there, <b><%= current_user.name %></b>!
-          <a><%= link_to "Logout", logout_path, method: :delete, class: "button is-primary" %></a>
-        <% else %>
-          <a><%= link_to "Login/Signup", login_path, class: "button is-primary" %></a>
-        <% end %>
-        </span>
-      </div>
-    </nav>
-  <main>
-    <div class="container">
-      <% flash.each do |message_type, message| %>
-        <div class="message">
-          <%= message %>
-        </div>
-      <% end %>
-      <%= yield %>
-    </div>
-  </main>
-  <footer class="footer">
+  <div class="columns">
+    <%= render partial: 'shared/sidenav' %>
+
+    <main class="column is-10">
       <div class="container">
-        © 2016 Luca Hagel | DevAudit <%= ENV["HEROKU_RELEASE_VERSION"]%>
+        <% flash.each do |message_type, message| %>
+          <div class="message">
+            <%= message %>
+          </div>
+        <% end %>
+        <%= yield %>
       </div>
-  </footer>
+    </main>
+
+    <%= render partial: 'shared/footer' %>
+
+  </div>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
