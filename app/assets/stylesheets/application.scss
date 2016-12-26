@@ -12,4 +12,8 @@
  *
  */
 
-@import "bulma";
+@import './shared.scss';
+
+$primary: #b86bff;
+
+@import 'bulma';
