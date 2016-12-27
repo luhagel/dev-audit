@@ -2,11 +2,16 @@
 <div class="row">
   <div class="col s12 m8 offset-m2">
     <%= form_for @team do |team| %> 
-      <p><%= team.text_field :name, placeholder: "How do you want to call your Team?" %></p> 
-      <%= team.check_box :is_public, id:"is_public" %>
-      <%= team.label "Make the team public?", for:"is_public", id:"is_public" %>
-      <br><br>
-      <%= team.submit "Create", class: "button" %>
+      <p class="control">
+        <%= team.text_field :name, placeholder: "How do you want to call your Team?", class: 'input' %>
+      </p>
+      <p class="control">
+        <%= team.check_box :is_public, id:"is_public"%>
+        <%= team.label "Make the team public?", for:"is_public", id:"is_public", class: 'checkbox' %>
+      </p>
+      <p class="control">
+        <%= team.submit "Create", class: "button is-primary is-outlined" %>
+      </p>
     <% end %>
   </div>
 </div>
