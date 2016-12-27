@@ -1,18 +1,25 @@
-<h1 class="center">Sign Up</h1>
-<p class="center">Take the first step to get a better overview of your team members and/or applicants!</p>
 <%= form_for @user do |u| %>
-  <%= u.label :name, "Your Name:" %>
-  <%= u.text_field :name, placeholder: "Full Name" %>
+  <p class="control">
+    <%= u.label :name, "Your Name:", class: 'label' %>
+    <%= u.text_field :name, placeholder: "Full Name", class: 'input' %>
+  </p>
 
-  <%= u.label :email, "Your email address" %>
-  <%= u.email_field :email %>
+  <p class="control">
+    <%= u.label :email, "Your email address", class: 'label' %>
+    <%= u.email_field :email, class: 'input' %>
+  </p>
+  <p class="control">
+    <%= u.label :password, "Pick a strong Password", class: 'label' %>
+    <%= u.password_field :password, class: 'input' %>
+  </p>
 
-  <%= u.label :password, "Pick a strong Password" %>
-  <%= u.password_field :password %>
+  <p class="control">
+    <%= u.label :password_confirmation, "Password Confirmation", class: 'label' %>
+    <%= u.password_field :password_confirmation, class: 'input' %>
+  </p>
 
-  <%= u.label :password_confirmation, "Password Confirmation" %>
-  <%= u.password_field :password_confirmation %>
-
-  <%= u.submit "Register!", class: "button" %> 
+  <p class="control">
+    <%= u.submit "Register!", class: "button is-primary is-outlined" %> 
+  </p>
 <% end %>
 

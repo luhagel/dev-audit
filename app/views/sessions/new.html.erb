@@ -1,15 +1,17 @@
-<h1 class="center">Login</h1>
-<p class="center">Welcome Back!</p>
 <%= form_for(:session, url: login_path) do |u| %>
-  <%= u.label :email, "Your email address" %>
-  <%= u.email_field :email %>
-
-  <%= u.label :password, "Your password" %>
-  <%= u.password_field :password %>
-
-  <%= u.submit "Login!", class: "button" %> 
+  <p class="control">
+  <%= u.label :email, "Your email address", class: 'label' %>
+  <%= u.email_field :email, class: 'input' %>
+  </p>
+  <p class="control">
+  <%= u.label :password, "Your password", class: 'label' %>
+  <%= u.password_field :password, class: 'input' %>
+  </p>
+  <p class="control">
+  <%= u.submit "Login!", class: "button is-primary is-outlined" %> 
+  <%= link_to "No Account? Register now!", signup_path, class: 'button is-link'%>
+  </p>
 <% end %>
-<p class="center">Don't have an Account yet? <%= link_to "Register now!", signup_path%></p>
 
 
 
