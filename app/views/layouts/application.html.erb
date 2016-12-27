@@ -17,7 +17,7 @@
     <%= render partial: 'shared/topnav' %>
       <div class="container" id="content-wrapper">
         <% flash.each do |message_type, message| %>
-          <div class="message">
+          <div class="notification is-info">
             <%= message %>
           </div>
         <% end %>
