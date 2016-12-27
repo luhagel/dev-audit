@@ -1,6 +1,24 @@
 #sidenav {
   margin-right: -10px;
-  background-color: #69707a;
+  background-color: #420f69;
 
-  color: #fff;
+  .title {
+    margin-top: 8px;
+
+    color: #fff;
+  }
+}
+
+.menu {
+  margin-left: 16px;
+
+  .menu-label {
+    color: #bbb;
+  }
+
+  .menu-list {
+    a {
+      color: #eee;
+    }
+  }
 }

@@ -3,12 +3,20 @@
     <div class="sidenav">
       <div class="title is-4 has-text-centered">Overview</div>
       <div class="menu">
+        <% if logged_in? %>
+          <p class="menu-label">Hey <%= user.name %></p>
+          <ul class="menu-list">
+            <li><a href="/">Settings</a></li>
+            <li><%= link_to 'Logout', logout_path %></li>
+          </ul>
+        <% else %>
+        <% end %>
         <p class="menu-label">Your Teams</p>
         <ul class="menu-list">
-          <li><a href="">Product Class 18</a></li>
-          <li><a href="">Summer Academy 16</a></li>
-          <li><a href="">Summer Academy 17</a></li>
-          <li><a href="">Procuct College Applicants</a></li>
+          <% user.teams.each do |team| %>
+            <li><%= link_to team.name, team %></li>
+          <% end %>
+          <li><%= link_to 'Add a new Team', new_team_path %></li>
         </ul>
       </div>
     </div>
