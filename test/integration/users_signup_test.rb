@@ -18,6 +18,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                     email: "test_signup@example.com", 
                                     password: "testpw", 
                                     password_confirmation: "testpw"} }
-    assert_redirected_to teams_path
+    assert_redirected_to root_path
   end
 end

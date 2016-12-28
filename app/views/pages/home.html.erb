@@ -1,19 +1,18 @@
     <section class="hero">
-    <div class="hero-body">
-      <br><br>
-      <h1 class="header center orange-text">Dev Audit</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Keep track your your applicants side projects.</h5>
+      <div class="hero-body">
+        <br><br>
+        <h1 class="header center orange-text">Dev Audit</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">Keep track your your applicants side projects.</h5>
+        </div>
+        <div class="row center">
+        <% if logged_in? %>
+          <%= link_to "Create a new Team!", new_team_path, class: "button is-primary" %>
+        <% else %>
+          <%= link_to "Start NOW!", signup_path, class: "button is-primary" %>
+        <% end %>
+        </div>
       </div>
-      <div class="row center">
-      <% if logged_in? %>
-        <%= link_to "View your Teams!", teams_path, class: "button is-primary" %>
-      <% else %>
-        <%= link_to "Start NOW!", signup_path, class: "button is-primary" %>
-      <% end %>
-      </div>
-      <br><br>
-</div>
     </section>
 
   <div class="container">

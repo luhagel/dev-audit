@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "Welcome to Dev Audit!"
-      redirect_to teams_path
+      redirect_to root_path
     else
       flash.now[:error] = "Something went wrong!"
       render 'new'
