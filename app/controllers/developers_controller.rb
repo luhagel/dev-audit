@@ -16,7 +16,7 @@ class DevelopersController < ApplicationController
   @team = Team.find(params[:team_id])
   @developer = Developer.new(developer_params)
   @developer.team = @team
-    gitGraph = getContribGraph(@developer.username)
+    gitGraph = getContribGraph(@developer.username, 4)
     @developer.git_graph_html = gitGraph
     if @developer.save
       redirect_to [@team, @developer]
