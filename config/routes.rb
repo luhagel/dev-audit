@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   #Resources
   resources :users, only: [:create]
 
-  resources :teams, only: [:index, :show, :new, :create] do
+  resources :teams, only: [:show, :new, :create] do
     resources :developers, only: [:show, :new, :create]
   end
 

@@ -10,47 +10,24 @@
   </head>
 
   <body>
-  <div class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper">
-        <a class="brand-logo center" href="/">
-          Dev Audit
-        </a>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-          <% if logged_in? %>
-            <li><%= link_to "Overview", teams_path %></li>
-          <% end %>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <% if logged_in? %>
-            <li>Hey there, <b><%= current_user.name %></b>!</li>
-            <li><%= link_to "Logout", logout_path, method: :delete, class: "btn waves-effect wave-light" %></li>
-          <% else %>
-            <li><%= link_to "Login/Signup", login_path, class: "btn waves-effect wave-light" %></li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
-  </div>
-  <main>
-    <div class="container">
-      <% flash.each do |message_type, message| %>
-        <div class="card teal white-text">
-          <div class="card-content">
+  <div class="columns">
+    <%= render partial: 'shared/sidenav', locals: { user: current_user } %>
+
+    <main class="column is-10">
+    <%= render partial: 'shared/topnav' %>
+      <div class="container" id="content-wrapper">
+        <% flash.each do |message_type, message| %>
+          <div class="notification is-info">
             <%= message %>
           </div>
-        </div>
-      <% end %>
-      <%= yield %>
-    </div>
-  </main>
-  <footer class="page-footer">
-    <div class="footer-copyright">
-      <div class="container">
-        © 2016 Luca Hagel | DevAudit <%= ENV["HEROKU_RELEASE_VERSION"]%>
+        <% end %>
+        <%= yield %>
       </div>
-    </div>
-  </footer>
+    </main>
+
+    <%= render partial: 'shared/footer' %>
+
+  </div>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
