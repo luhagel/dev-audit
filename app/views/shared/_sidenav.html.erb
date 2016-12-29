@@ -5,7 +5,6 @@
       <% if logged_in? %>
         <p class="menu-label">Hey <%= user.name %></p>
         <ul class="menu-list">
-          <li><a href="/">Settings</a></li>
           <li><%= link_to 'Logout', logout_path, method: :delete %></li>
         </ul>
         <p class="menu-label">Your Teams</p>

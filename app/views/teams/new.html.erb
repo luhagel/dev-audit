@@ -1,6 +1,6 @@
-<h1 class="center">Create a new Team</h1>
-<div class="row">
-  <div class="col s12 m8 offset-m2">
+<div class="columns">
+  <div class="column is-half is-offset-one-quarter">
+    <h1 class="title">Create a new Team</h1>
     <%= form_for @team do |team| %> 
       <p class="control">
         <%= team.text_field :name, placeholder: "How do you want to call your Team?", class: 'input' %>
