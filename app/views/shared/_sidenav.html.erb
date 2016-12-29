@@ -26,6 +26,12 @@
             <li><%= link_to 'Register', signup_path %></li>
           </ul>
         <% end %>
+        <p class="menu-label">Some Public Teams</p>
+        <ul class="menu-list">
+          <% Team.where(is_public: true).limit(10).each do |team| %>
+            <li><%= link_to team.name, team %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>

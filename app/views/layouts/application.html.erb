@@ -11,7 +11,7 @@
 
   <body>
   <div class="columns">
-    <%= render partial: 'shared/sidenav', locals: { user: current_user } %>
+    <%= render partial: 'shared/sidenav', locals: { user: current_user, public_teams: @public_teams } %>
 
     <main class="column is-10">
     <%= render partial: 'shared/topnav' %>
