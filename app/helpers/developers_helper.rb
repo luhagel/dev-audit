@@ -1,47 +1,28 @@
 module DevelopersHelper
   include ActionView::Helpers::OutputSafetyHelper
 
-  def getContribGraph(username, size)
+  def get_contrib_graph(username)
     doc = Nokogiri::HTML(open('https://www.github.com/' + username))
     graph = doc.css('.js-calendar-graph')
+    graph_array = []
     graph.css('text').remove
-    graph.css('g').first.attributes['transform'].value = 'translate(-20, 0)'
-    # smaller rects
     graph.css('rect').each do |r|
-      r.attributes['width'].value = String(size)
-      r.attributes['height'].value = String(size)
-      r.attributes['y'].value = String(Integer(r.attributes['y'].value) / 12 * size)
-
-      # normalize colors
-      r.attributes['fill'].value = case Integer(r.attributes['data-count'].value)
-                                   when 0
-                                     '#eeeeee'
-                                   when 1..5
-                                     '#d6e685'
-                                   when 6..10
-                                     '#8cc665'
-                                   when 11..15
-                                     '#44a340'
-                                   when 16..20
-                                     '#1e6823'
-                                   else
-                                     '#000000'
-      end
+      graph_array += [r.attributes['data-count'].value]
     end
-    # remove space between rects
-    x_offset = 0
-    graph.css('g>g').each do |g|
-      g.attributes['transform'].value = 'translate(' + String(x_offset) + ', 0)'
-      x_offset += size + 1
-    end
-
-    # decrease blocked space
-    graph.css('svg').first.attributes['height'].value = '42'
-    graph.css('svg').first.attributes['width'].value = '100%'
-    raw(graph)
+    return graph_array
   end
 
-  def checkFor404(url)
+  def generate_graph_svg(graph_array)
+    svg = '<svg width="300px" height="300px" xmlns="http://www.w3.org/2000/svg">'
+    graph_array.each do |rect|
+      color = get_rect_color(rect)
+      
+    end
+    svg += '</svg>'
+    return svg
+  end
+
+  def check_for_404(url)
     uri = URI(url)
     Net::HTTP.use_ssl = true
     Net::HTTP.use_.start(uri.host, uri.port) do |http|
@@ -51,17 +32,17 @@ module DevelopersHelper
     end
   end
 
-  def updateAllDeveloperInfo
+  def update_all_developer_info
     @developers = Developer.all
     save_counter = 0
     @developers.each do |dev|
-      dev.git_graph_html = getContribGraph(dev.username, 4)
+      dev.git_graph_html = get_contrib_graph(dev.username, 4)
       save_counter += 1 if dev.save
     end
     puts 'SUCCESS: Updated ' + String(save_counter) + '/' + String(@developers.count) + ' Developers!'
   end
 
-  def updateDeveloperInfo(dev)
-    dev.git_graph_html = getContribGraph(dev.username)
+  def update_developer_info(dev)
+    dev.git_graph_html = get_contrib_graph(dev.username)
   end
 end
