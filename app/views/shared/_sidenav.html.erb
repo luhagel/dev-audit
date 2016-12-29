@@ -1,32 +1,37 @@
 <aside class="column is-2 aside hero is-fullheight is-hidden-mobile" id="sidenav">
-  <div>
-    <div class="sidenav">
-      <div class="title is-4 has-text-centered">Overview</div>
-      <div class="menu">
-        <% if logged_in? %>
-          <p class="menu-label">Hey <%= user.name %></p>
+  <div class="sidenav">
+    <div class="title is-4 has-text-centered">Overview</div>
+    <div class="menu">
+      <% if logged_in? %>
+        <p class="menu-label">Hey <%= user.name %></p>
+        <ul class="menu-list">
+          <li><a href="/">Settings</a></li>
+          <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+        </ul>
+        <p class="menu-label">Your Teams</p>
+        <ul class="menu-list">
+          <% user.teams.each do |team| %>
+            <li><%= link_to team.name, team %></li>
+          <% end %>
+          <li><%= link_to 'Add a new Team', new_team_path %></li>
+        </ul>
+      <% else %>
+        <p class="menu-label">Welcome back!</p>
           <ul class="menu-list">
-            <li><a href="/">Settings</a></li>
-            <li><%= link_to 'Logout', logout_path, method: :delete %></li>
-          </ul>
-          <p class="menu-label">Your Teams</p>
+          <li><%= link_to 'Login', login_path %></li>
+        </ul>
+        <p class="menu-label">New here?</p>
           <ul class="menu-list">
-            <% user.teams.each do |team| %>
-              <li><%= link_to team.name, team %></li>
-            <% end %>
-            <li><%= link_to 'Add a new Team', new_team_path %></li>
-          </ul>
-        <% else %>
-          <p class="menu-label">Welcome back!</p>
-           <ul class="menu-list">
-            <li><%= link_to 'Login', login_path %></li>
-          </ul>
-          <p class="menu-label">New here?</p>
-           <ul class="menu-list">
-            <li><%= link_to 'Register', signup_path %></li>
-          </ul>
+          <li><%= link_to 'Register', signup_path %></li>
+        </ul>
+      <% end %>
+      <p class="menu-label">Some Public Teams</p>
+      <ul class="menu-list">
+        <% Team.where(is_public: true).limit(10).each do |team| %>
+          <li><%= link_to team.name, team %></li>
         <% end %>
-      </div>
+      </ul>
     </div>
   </div>
+  <%= render partial: 'shared/footer' %>
 </aside>
