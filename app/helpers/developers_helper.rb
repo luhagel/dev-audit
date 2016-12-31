@@ -9,7 +9,7 @@ module DevelopersHelper
     graph.css('rect').each do |r|
       graph_array += [r.attributes['data-count'].value]
     end
-    return graph_array
+    graph_array
   end
 
   def generate_graph_svg(graph_array)
@@ -19,7 +19,7 @@ module DevelopersHelper
       
     end
     svg += '</svg>'
-    return svg
+    svg
   end
 
   def check_for_404(url)

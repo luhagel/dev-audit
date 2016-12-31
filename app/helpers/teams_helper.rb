@@ -1,5 +1,5 @@
 module TeamsHelper
-  def is_public?(team)
+  def public?(team)
     if team.is_public != nil
       team.is_public
     else 
@@ -7,7 +7,7 @@ module TeamsHelper
     end
   end
 
-  def is_owner?(team)
+  def owner?(team)
     current_user == team.user && current_user != nil
   end
 end
