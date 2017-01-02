@@ -3,7 +3,7 @@
   <h4 class="subtitle">Please note that some people might not push all their work to Github, work in private repositories or on a feature branch.</h4>
 </div>
 <br>
-<div class="columns">
+<div class="columns is-multiline">
   <% @developers.each do |dev| %>
     <div class="column">
     <%= link_to [@team, dev] do %>
@@ -21,12 +21,14 @@
 </div>
 <% if @developers.count == 0 %>
 <div class="columns">
-  <div class="column">
+  <div class="column is-half is-offset-one-quarter">
     <div class="card is-fullwidth">
-      <div class="card-content">
-        <h4 class="has-text-centered">There is nothing here yet!</h4>
+      <div class="card-content has-text-centered">
+        <h4 class="title">There is nothing here yet!</h4>
         <% if logged_in? %>
-          <p class="has-text-centered">Start by adding your first develper below!</p>
+          <p>Start by adding your first develper below!</p>
+          <br>
+          <%= link_to 'Add', new_team_developer_path(@team), class: "button is-primary is-outlined" %>
         <% else %>
           <p class="has-text-centered">The team owner hasn't added any developers yet, check back later!</p>
         <% end %>
@@ -34,11 +36,4 @@
     </div>
   </div>
 </div>
-<% end %>
-<% if logged_in? %>
-  <div class="columns">
-    <div class="column">
-      <%= link_to 'Add', new_team_developer_path(@team), class: "button" %>
-    </div>
-  </div>
 <% end %>

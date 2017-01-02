@@ -1,7 +1,10 @@
-<h1 class="title">Add a new developer</h1>
-
-<%= form_for [@team, @developer] do |dev| %>
-  <p class="control"><%= dev.text_field :name, placeholder: "Name", class: 'input' %></p> 
-  <p class="control"><%= dev.text_field :username, placeholder: "GitHub Username", class: 'input' %></p>
-  <p class="control"><%= dev.submit "Add", class: "button is-primary is-outlined" %></p>
-<% end %>
+<div class="columns">
+  <div class="column is-half is-offset-one-quarter">
+    <h1 class="title">Add a new developer</h1>
+    <%= form_for [@team, @developer] do |dev| %>
+      <p class="control"><%= dev.text_field :name, placeholder: "Name", class: 'input' %></p> 
+      <p class="control"><%= dev.text_field :username, placeholder: "GitHub Username", class: 'input' %></p>
+      <p class="control"><%= dev.submit "Add", class: "button is-primary is-outlined" %></p>
+    <% end %>
+  </div>
+</div>

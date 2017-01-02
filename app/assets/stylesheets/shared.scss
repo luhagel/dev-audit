@@ -1,5 +1,7 @@
 #sidenav {
+  position: fixed;
   margin-right: -10px;
+  margin-top: 10px;
   background-color: #420f69;
 
   .title {
@@ -7,6 +9,10 @@
 
     color: #fff;
   }
+}
+
+#topnav {
+  margin-right: -10px;
 }
 
 .menu {
@@ -21,4 +27,8 @@
       color: #eee;
     }
   }
+}
+
+footer {
+  color: #fff;
 }
