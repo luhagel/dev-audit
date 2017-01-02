@@ -13,11 +13,11 @@ module DevelopersHelper
   end
 
   def generate_graph_svg(graph_array)
-    svg = '<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 360 40">'
-    svg += '<line x1="0" x2="360" y1="20" y2="20" stroke-width="2" stroke="black" />'
+    svg = '<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 360 60">'
+    svg += '<line x1="0" x2="360" y1="30" y2="30" stroke-width="2" stroke="black" />'
     line_offset = 0
     graph_array.each do |line|
-      svg += '<line x1="' + String(line_offset) + '" x2="' + String(line_offset) + '" y1="' + String(20 - line.to_i * 1.5 ) + '" y2="' + String(20 + line.to_i * 1.5) + '" stroke-width="1" stroke="purple" />'
+      svg += '<line x1="' + String(line_offset) + '" x2="' + String(line_offset) + '" y1="' + String(30 - line.to_i * 1.5 ) + '" y2="' + String(30 + line.to_i * 1.5) + '" stroke-width="1" stroke="purple" />'
       line_offset += 1
     end
     svg += '</svg>'
