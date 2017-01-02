@@ -2,21 +2,23 @@ module DevelopersHelper
   include ActionView::Helpers::OutputSafetyHelper
 
   def get_contrib_graph(username)
-    doc = Nokogiri::HTML(open('https://www.github.com/' + username))
-    graph = doc.css('.js-calendar-graph')
+    doc = Nokogiri::HTML(open('https://www.github.com/users/' + username + '/contributions'))
+    graph = doc.css('.js-calendar-graph-svg')
     graph_array = []
     graph.css('text').remove
     graph.css('rect').each do |r|
       graph_array += [r.attributes['data-count'].value]
     end
-    graph_array
+    generate_graph_svg(graph_array)
   end
 
   def generate_graph_svg(graph_array)
-    svg = '<svg width="300px" height="300px" xmlns="http://www.w3.org/2000/svg">'
-    graph_array.each do |rect|
-      color = get_rect_color(rect)
-      
+    svg = '<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 360 40">'
+    svg += '<line x1="0" x2="360" y1="20" y2="20" stroke-width="2" stroke="black" />'
+    line_offset = 0
+    graph_array.each do |line|
+      svg += '<line x1="' + String(line_offset) + '" x2="' + String(line_offset) + '" y1="' + String(20 - line.to_i * 1.5 ) + '" y2="' + String(20 + line.to_i * 1.5) + '" stroke-width="1" stroke="purple" />'
+      line_offset += 1
     end
     svg += '</svg>'
     svg
@@ -36,7 +38,7 @@ module DevelopersHelper
     @developers = Developer.all
     save_counter = 0
     @developers.each do |dev|
-      dev.git_graph_html = get_contrib_graph(dev.username, 4)
+      dev.git_graph_html = get_contrib_graph(dev.username)
       save_counter += 1 if dev.save
     end
     puts 'SUCCESS: Updated ' + String(save_counter) + '/' + String(@developers.count) + ' Developers!'
