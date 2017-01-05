@@ -36,7 +36,7 @@
     </div>
   </div>
 </div>
-<% else %>
+<% elsif owner?(@team) %>
 <div class="columns">
   <div class="column is-half is-offset-one-quarter has-text-centered">
      <%= link_to 'Add', new_team_developer_path(@team), class: "button is-primary is-outlined is-large" %>

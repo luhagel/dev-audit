@@ -12,9 +12,11 @@
  *
  */
 
-@import './shared.scss';
-
 $primary: #b86bff;
+
+@import './general';
+@import './shared';
+@import './developers';
 
 @import 'bulma';
 
