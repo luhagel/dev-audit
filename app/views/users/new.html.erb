@@ -1,29 +1,34 @@
 <div class="columns">
   <div class="column is-half is-offset-one-quarter">
-    <%= form_for @user do |u| %>
-      <p class="control">
-        <%= u.label :name, "Your Name:", class: 'label' %>
-        <%= u.text_field :name, placeholder: "Full Name", class: 'input' %>
-      </p>
+    <div class="card is-fullwidth has-text-centered">
+      <h1 class="title card-form-header">Register</h1>
+      <div class="card-content">
+        <%= form_for @user do |u| %>
+          <p class="control">
+            <%= u.label :name, "Your Name:", class: 'label' %>
+            <%= u.text_field :name, placeholder: "Full Name", class: 'input' %>
+          </p>
 
-      <p class="control">
-        <%= u.label :email, "Your email address", class: 'label' %>
-        <%= u.email_field :email, class: 'input' %>
-      </p>
-      <p class="control">
-        <%= u.label :password, "Pick a strong Password", class: 'label' %>
-        <%= u.password_field :password, class: 'input' %>
-      </p>
+          <p class="control">
+            <%= u.label :email, "Your Email Address", class: 'label' %>
+            <%= u.email_field :email, class: 'input' %>
+          </p>
+          <p class="control">
+            <%= u.label :password, "Pick a Strong Password", class: 'label' %>
+            <%= u.password_field :password, class: 'input' %>
+          </p>
 
-      <p class="control">
-        <%= u.label :password_confirmation, "Password Confirmation", class: 'label' %>
-        <%= u.password_field :password_confirmation, class: 'input' %>
-      </p>
+          <p class="control">
+            <%= u.label :password_confirmation, "Password Confirmation", class: 'label' %>
+            <%= u.password_field :password_confirmation, class: 'input' %>
+          </p>
 
-      <p class="control">
-        <%= u.submit "Register!", class: "button is-primary is-outlined" %>
-        <%= link_to 'Login instead', login_path, class: 'button is-link' %> 
-      </p>
-    <% end %>
+          <p class="control">
+            <%= u.submit "Register!", class: "button is-primary is-outlined" %>
+            <%= link_to 'Login instead', login_path, class: 'button is-link' %>
+          </p>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

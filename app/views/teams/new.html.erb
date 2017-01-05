@@ -1,17 +1,21 @@
 <div class="columns">
   <div class="column is-half is-offset-one-quarter">
-    <h1 class="title">Create a new Team</h1>
-    <%= form_for @team do |team| %> 
-      <p class="control">
-        <%= team.text_field :name, placeholder: "How do you want to call your Team?", class: 'input' %>
-      </p>
-      <p class="control">
-        <%= team.check_box :is_public, id:"is_public"%>
-        <%= team.label "Make the team public?", for:"is_public", id:"is_public", class: 'checkbox' %>
-      </p>
-      <p class="control">
-        <%= team.submit "Create", class: "button is-primary is-outlined" %>
-      </p>
-    <% end %>
+    <div class="card is-fullwidth has-text-centered">
+      <h1 class="title card-form-header">Create a New Team</h1>
+      <div class="card-content">
+        <%= form_for @team do |team| %>
+          <p class="control">
+            <%= team.text_field :name, placeholder: "How do you want to call your Team?", class: 'input' %>
+          </p>
+          <p class="control">
+            <%= team.check_box :is_public, id:"is_public"%>
+            <%= team.label "Make the team public?", for:"is_public", id:"is_public", class: 'checkbox' %>
+          </p>
+          <p class="control">
+            <%= team.submit "Create", class: "button is-primary is-outlined" %>
+          </p>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
