@@ -1,13 +1,14 @@
 #sidenav {
-  position: fixed;
+  background-color: $primary;
   margin-right: -10px;
   margin-top: 10px;
-  background-color: #420f69;
+
+  position: fixed;
 
   .title {
-    margin-top: 8px;
+    color: $white;
 
-    color: #fff;
+    margin-top: 8px;
   }
 }
 
@@ -19,16 +20,16 @@
   margin-left: 16px;
 
   .menu-label {
-    color: #bbb;
+    color: $light-grey;
   }
 
   .menu-list {
     a {
-      color: #eee;
+      color: $white;
     }
   }
 }
 
 footer {
-  color: #fff;
+  color: $white;
 }
