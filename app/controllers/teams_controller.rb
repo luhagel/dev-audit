@@ -13,8 +13,8 @@ class TeamsController < ApplicationController
       flash[:error] = "You must be logged in to view this private team!"
       redirect_to login_url
     elsif !owner?(@team) && !public?(@team)
-      render 'shared/not_owner'
-    else 
+      render 'not_owner'
+    else
       @developers = @team.developers.sort { |a,b| a.name.downcase <=> b.name.downcase }
     end
   end
