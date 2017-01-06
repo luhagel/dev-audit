@@ -14,10 +14,10 @@ module DevelopersHelper
 
   def generate_graph_svg(graph_array)
     svg = '<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 360 60">'
-    svg += '<line x1="0" x2="360" y1="30" y2="30" stroke-width="1" stroke="black" class="graph-line"/>'
+    svg += '<line x1="0" x2="360" y1="30" y2="30" stroke-width="1" stroke="black"/>'
     line_offset = 0
     graph_array.each do |line|
-      svg += '<line x1="' + String(line_offset) + '" x2="' + String(line_offset) + '" y1="' + String(30 - line.to_i * 1.5 ) + '" y2="' + String(30 + line.to_i * 1.5) + '" stroke-width="1" />'
+      svg += '<line x1="' + String(line_offset) + '" x2="' + String(line_offset) + '" y1="' + String(30 - line.to_i * 1.5 ) + '" y2="' + String(30 + line.to_i * 1.5) + '" stroke-width="1"  class="graph-line" />'
       line_offset += 1
     end
     svg += '</svg>'
