@@ -2,10 +2,6 @@ class TeamsController < ApplicationController
   include TeamsHelper
   before_action :require_login, only: [:index, :new, :create]
 
-  def index
-    @teams = current_user.teams
-  end
-
   def show
     @team = Team.find(params[:id])
 
@@ -15,7 +11,7 @@ class TeamsController < ApplicationController
     elsif !owner?(@team) && !public?(@team)
       render 'not_owner'
     else
-      @developers = @team.developers.sort { |a,b| a.name.downcase <=> b.name.downcase }
+      @developers = @team.developers.sort { |a,b| a.github_user.name.downcase <=> b.github_user.name.downcase }
     end
   end
 

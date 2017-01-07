@@ -4,7 +4,6 @@
       <h1 class="title card-form-header">Add a New Developer</h1>
       <div class="card-content">
         <%= form_for [@team, @developer] do |dev| %>
-          <p class="control"><%= dev.text_field :name, placeholder: "Name", class: 'input' %></p>
           <p class="control"><%= dev.text_field :username, placeholder: "GitHub Username", class: 'input' %></p>
           <p class="control"><%= dev.submit "Add", class: "button is-primary is-outlined" %></p>
         <% end %>
