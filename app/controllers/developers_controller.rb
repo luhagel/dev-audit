@@ -3,10 +3,6 @@ class DevelopersController < ApplicationController
 
   before_action :require_login
 
-  def index
-    @developers = Developer.all
-  end
-
   def new
     @team = Team.find(params[:team_id])
     @developer = Developer.new
