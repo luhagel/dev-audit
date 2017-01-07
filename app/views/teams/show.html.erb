@@ -12,7 +12,7 @@
           <p class="card-header-title"><%= dev.name %></p>
         </header>
         <div class="card-content">
-          <%== dev.git_graph_html %>
+          <%= render 'github_users/contrib_graph', contribs: dev.github_user.contributions %>
         </div>
       </div>
       <% end %>
