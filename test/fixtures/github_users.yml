@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  login: MyString
+luca:
+  login: luhagel
   user_id: 1
-  name: MyString
+  name: Luca Hagel
   company: MyString
   blog: MyString
   location: MyString
@@ -15,11 +15,12 @@ one:
   followers: 1
   following: 1
   contributions: [1]
+  developer: luca
 
-two:
-  login: MyString
+octocat:
+  login: octocat
   user_id: 1
-  name: MyString
+  name: Octocat
   company: MyString
   blog: MyString
   location: MyString
@@ -31,3 +32,4 @@ two:
   followers: 1
   following: 1
   contributions: [1]
+  developer: octocat
