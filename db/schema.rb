@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170107080741) do
     t.datetime "updated_at", null: false
     t.string   "name"
     t.integer  "team_id"
+    t.index ["team_id"], name: "index_developers_on_team_id", using: :btree
   end
 
   create_table "github_users", force: :cascade do |t|
@@ -51,15 +52,6 @@ ActiveRecord::Schema.define(version: 20170107080741) do
     t.integer  "team_id"
   end
 
-  create_table "team_members", force: :cascade do |t|
-    t.integer  "team_id"
-    t.integer  "developer_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["developer_id"], name: "index_team_members_on_developer_id", using: :btree
-    t.index ["team_id"], name: "index_team_members_on_team_id", using: :btree
-  end
-
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                 null: false
@@ -78,8 +70,7 @@ ActiveRecord::Schema.define(version: 20170107080741) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "developers", "teams"
   add_foreign_key "github_users", "developers"
-  add_foreign_key "team_members", "developers"
-  add_foreign_key "team_members", "teams"
   add_foreign_key "teams", "users"
 end
