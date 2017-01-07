@@ -34,7 +34,7 @@ gem 'nokogiri'
 gem 'bulma-rails'
 gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
 
-gem 'github_api'
+gem 'octokit', '~> 4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
