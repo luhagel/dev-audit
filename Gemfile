@@ -43,6 +43,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'guard'
+  gem 'guard-minitest'
   # vulnarability testing
   gem 'brakeman'
   # better error display
@@ -62,6 +64,10 @@ end
 
 group :test do
   gem 'rails-controller-testing'
+  gem 'minitest-reporters'
+  gem 'minitest-rails-capybara'
+
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
