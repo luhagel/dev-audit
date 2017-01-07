@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'team_members/new'
+
+  get 'team_members/create'
+
   # match errors to their templates
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all

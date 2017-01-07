@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209232257) do
+ActiveRecord::Schema.define(version: 20170107042902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,25 @@ ActiveRecord::Schema.define(version: 20161209232257) do
     t.text     "git_graph_html"
     t.integer  "team_id"
     t.index ["team_id"], name: "index_developers_on_team_id", using: :btree
+  end
+
+  create_table "github_users", force: :cascade do |t|
+    t.string   "login"
+    t.integer  "user_id"
+    t.string   "name",          default: ""
+    t.string   "company",       default: ""
+    t.string   "blog",          default: ""
+    t.string   "location",      default: ""
+    t.string   "email",         default: ""
+    t.boolean  "hireable",      default: false
+    t.string   "bio",           default: ""
+    t.integer  "public_repos",  default: 0
+    t.integer  "public_gists",  default: 0
+    t.integer  "followers",     default: 0
+    t.integer  "following",     default: 0
+    t.integer  "contributions", default: [],                 array: true
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "teams", force: :cascade do |t|
