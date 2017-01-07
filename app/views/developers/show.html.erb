@@ -5,7 +5,7 @@
     </p>
   </header>
   <div class="card-content">
-    <%== @developer.git_graph_html %>
+    <%= render 'github_users/contrib_graph', contribs: @developer.github_user.contributions %>
   </div>
   <footer class="card-footer">
     <%= link_to "Back", team_path(@team), class: "card-footer-item" %>

@@ -10,19 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107072512) do
+ActiveRecord::Schema.define(version: 20170107080741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "developers", force: :cascade do |t|
     t.string   "username"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "name"
-    t.text     "git_graph_html"
     t.integer  "team_id"
-    t.index ["team_id"], name: "index_developers_on_team_id", using: :btree
   end
 
   create_table "github_users", force: :cascade do |t|
@@ -44,6 +42,13 @@ ActiveRecord::Schema.define(version: 20170107072512) do
     t.datetime "updated_at",                    null: false
     t.integer  "developer_id"
     t.index ["developer_id"], name: "index_github_users_on_developer_id", using: :btree
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "developer_id"
+    t.integer  "team_id"
   end
 
   create_table "team_members", force: :cascade do |t|
@@ -73,7 +78,6 @@ ActiveRecord::Schema.define(version: 20170107072512) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
-  add_foreign_key "developers", "teams"
   add_foreign_key "github_users", "developers"
   add_foreign_key "team_members", "developers"
   add_foreign_key "team_members", "teams"
