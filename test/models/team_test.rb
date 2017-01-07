@@ -2,14 +2,20 @@ require 'test_helper'
 
 class TeamTest < ActiveSupport::TestCase
   def setup
-    @test_user = users(:one)
+    @team = teams(:team1)
   end
-  
-  test "Only allows valid teams" do
-    valid_team = Team.create(name: "testteam", user: @test_user)
-    invalid_team = Team.create(name: "testteam2")
 
-    assert valid_team.valid?
-    assert !invalid_team.valid?
+  test "should be valid" do
+    assert @team.valid?
+  end
+
+  test "should have name" do
+    @team.name = ""
+    assert_not @team.valid?
+  end
+
+  test "should have user" do
+    @team.user_id = nil
+    assert_not @team.valid?
   end
 end
