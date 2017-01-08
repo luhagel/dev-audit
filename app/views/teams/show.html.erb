@@ -9,7 +9,7 @@
     <%= link_to [@team, dev] do %>
       <div class="card">
         <header class="card-header">
-          <p class="card-header-title"><%= dev.name %></p>
+          <p class="card-header-title"><%= dev.github_user.name ? dev.github_user.name : dev.github_user.login %></p>
         </header>
         <div class="card-content">
           <%= render 'github_users/contrib_graph', contribs: dev.github_user.contributions %>

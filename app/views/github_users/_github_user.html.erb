@@ -1,0 +1,31 @@
+<div class="card is-fullwidth">
+  <header class="card-header">
+    <p class="card-header-title">
+      Github: @<%= @developer.github_user.login %>
+    </p>
+  </header>
+  <div class="card-content">
+    <div class="box">
+      <p class="title is-5"><strong>Personal:</strong></p>
+      <p><strong>Lives In:</strong> <%= github_user.location ? github_user.location : 'N/A' %></p>
+      <p><strong>Email:</strong> <a href="mailto:<%= github_user.email %>"><%= github_user.email ? github_user.email : 'N/A' %></a></p>
+      <p><strong>Website:</strong> <a href="<%= github_user.blog %>" target="_blank"><%= github_user.blog %></a></p>
+      <p><strong>Currently Works At/As:</strong> <%= github_user.company %></p>
+      <p><strong>Github Bio:</strong> <%= github_user.bio %></p>
+    </div>
+    <div class="box">
+      <p class="title is-5"><strong>Summary:</strong></p>
+      <p><strong>Public Repositories:</strong> <%= github_user.public_repos %></p>
+      <p><strong>Public Gists:</strong> <%= github_user.public_gists %></p>
+      <p><strong>Followers:</strong> <%= github_user.followers %></p>
+      <p><strong>Following:</strong> <%= github_user.following %></p>
+    </div>
+    <div class="box">
+      <p class="title is-5"><strong>Contribution Timeline:</strong></p>
+      <%= render 'github_users/contrib_graph', contribs: github_user.contributions %>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a href="https://github.com/<%= @developer.username %>" target=_blank class="card-footer-item">Go to Github Profile</a>
+  </footer>
+</div>
