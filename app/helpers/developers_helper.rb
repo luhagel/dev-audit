@@ -14,4 +14,8 @@ module DevelopersHelper
   def update_developer_info(dev)
     dev.github_user.contrib_data = get_contrib_graph(dev.username)
   end
+
+  def owner?(team)
+    current_user == team.user && current_user != nil
+  end
 end

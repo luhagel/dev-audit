@@ -32,6 +32,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'nokogiri'
 
 gem 'bulma-rails'
+gem "font-awesome-rails"
 gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
 
 gem 'octokit', '~> 4.0'
