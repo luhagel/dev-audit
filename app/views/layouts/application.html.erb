@@ -11,7 +11,8 @@
 
   <body>
   <div class="columns">
-    <%= render 'sidenav', locals: { user: current_user, public_teams: @public_teams } %>
+    <%= render 'topnav' %>
+    <%= render 'sidenav' %>
 
     <main class="column is-10 is-offset-2">
       <div class="container" id="content-wrapper">
