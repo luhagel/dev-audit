@@ -11,7 +11,7 @@ class TeamsController < ApplicationController
     elsif !owner?(@team) && !public?(@team)
       render 'not_owner'
     else
-      @developers = @team.developers.sort { |a, b| a.github_user.name <=> b.github_user.name ? a.github_user.name.downcase <=> b.github_user.name.downcase : a.github_user.login.downcase  <=> b.github_user.login.downcase }
+      @developers = @team.developers.sort { |a, b| a.username.downcase <=> b.username.downcase }
     end
   end
 
