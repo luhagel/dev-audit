@@ -3,7 +3,9 @@ require "test_helper"
 class CanLoginTest < Capybara::Rails::TestCase
   scenario "can click login button" do
     visit root_path
-    click_on 'Login'
+    within '#sidenav' do
+      click_on 'Login'
+    end
     page.must_have_content 'No Account?'
   end
 
