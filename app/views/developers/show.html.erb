@@ -6,7 +6,10 @@
       </div>
       <div class="column has-text-centered">
         <%= link_to team_path(@team), class: "button is-primary is-outlined" do %>
-          <span class="icon"><i class="fa fa-chevron-left"></i></span> Back to <%= @team.name %>
+          <span class="icon"><i class="fa fa-chevron-left"></i></span> <%= @team.name %>
+        <% end %>
+        <%= link_to [@team, @developer], method: :delete, class: "button is-danger", data: { confirm: "You sure?" } do %>
+          <span class="icon"><i class="fa fa-trash"></i></span> Delete
         <% end %>
       </div>
     </div>

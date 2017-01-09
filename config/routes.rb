@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :github_users, only: [:create]
 
   resources :teams, only: [:show, :new, :create] do
-    resources :developers, only: [:show, :new, :create]
+    resources :developers, only: [:show, :new, :create, :destroy]
   end
 
   #Root to landing page

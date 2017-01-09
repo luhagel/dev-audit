@@ -1,7 +1,8 @@
 class DevelopersController < ApplicationController
   include DevelopersHelper
 
-  before_action :require_login
+  before_action :require_login, only: [:new, :create, :destroy]
+  before_action :require_ownership, only: [:destroy]
 
   def new
     @team = Team.find(params[:team_id])
@@ -32,6 +33,12 @@ class DevelopersController < ApplicationController
     @developer = Developer.find(params[:id])
   end
 
+  def destroy
+    @team = Team.find(params[:team_id])
+    Developer.find(params[:id]).destroy
+    redirect_to @team
+  end
+
   private
 
   def developer_params
@@ -43,5 +50,10 @@ class DevelopersController < ApplicationController
       flash[:error] = 'You must be logged in to access this section'
       redirect_to login_url
     end
+  end
+
+  def require_ownership
+    @team = Team.find(params[:team_id])
+    redirect_to @team unless owner?(@team)
   end
 end
