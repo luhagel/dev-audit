@@ -11,15 +11,19 @@ class DevelopersController < ApplicationController
   def create
     @team = Team.find(params[:team_id])
     @developer = Developer.new(developer_params)
+    if Developer.where("username = ?", @developer.username)
+      Developer.where("username = ?", @developer.username).first.memberships.create(team: @team)
 
-    if @developer.save
+      redirect_to [@team]
+
+    elsif @developer.save
       @githubuser = GithubUser.create(login: @developer.username, developer_id: @developer.id)
       @githubuser.pull_github_data
       @githubuser.save
 
       @developer.memberships.create(team: @team)
 
-      redirect_to [@team, @developer]
+      redirect_to [@team]
     end
   end
 

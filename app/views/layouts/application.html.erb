@@ -10,22 +10,22 @@
   </head>
 
   <body>
-  <div class="columns">
-    <%= render 'topnav' %>
-    <%= render 'sidenav' %>
+    <div class="columns">
+      <%= render 'topnav' %>
+      <%= render 'sidenav' %>
 
-    <main class="column is-10 is-offset-2">
-      <div class="container" id="content-wrapper">
-        <% flash.each do |message_type, message| %>
-          <div class="notification is-info">
-            <%= message %>
-          </div>
-        <% end %>
-        <%= yield %>
-      </div>
-    </main>
-  </div>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%= render 'google_analytics' %>
+      <main class="column is-10 is-offset-2">
+        <div class="container" id="content-wrapper">
+          <% flash.each do |message_type, message| %>
+            <div class="notification is-info">
+              <%= message %>
+            </div>
+          <% end %>
+          <%= yield %>
+        </div>
+      </main>
+    </div>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'google_analytics' %>
   </body>
 </html>
