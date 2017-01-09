@@ -2,10 +2,6 @@ class TeamsController < ApplicationController
   include TeamsHelper
   before_action :require_login, only: [:index, :new, :create]
 
-  def index
-    @teams = current_user.teams
-  end
-
   def show
     @team = Team.find(params[:id])
 
@@ -13,9 +9,9 @@ class TeamsController < ApplicationController
       flash[:error] = "You must be logged in to view this private team!"
       redirect_to login_url
     elsif !owner?(@team) && !public?(@team)
-      render 'shared/not_owner'
-    else 
-      @developers = @team.developers.sort { |a,b| a.name.downcase <=> b.name.downcase }
+      render 'not_owner'
+    else
+      @developers = @team.developers.sort { |a, b| a.github_user.name <=> b.github_user.name ? a.github_user.name.downcase <=> b.github_user.name.downcase : a.github_user.login.downcase  <=> b.github_user.login.downcase }
     end
   end
 

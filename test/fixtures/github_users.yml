@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+luca:
+  login: luhagel
+  user_id: 1
+  name: Luca Hagel
+  company: MyString
+  blog: MyString
+  location: MyString
+  email: MyString
+  hireable: false
+  bio: MyString
+  public_repos: 1
+  public_gists: 1
+  followers: 1
+  following: 1
+  contributions: [1]
+  developer: luca
+
+octocat:
+  login: octocat
+  user_id: 1
+  name: Octocat
+  company: MyString
+  blog: MyString
+  location: MyString
+  email: MyString
+  hireable: false
+  bio: MyString
+  public_repos: 1
+  public_gists: 1
+  followers: 1
+  following: 1
+  contributions: [1]
+  developer: octocat

@@ -1,7 +1,8 @@
 class Team < ApplicationRecord
-  has_many :developers
-
   belongs_to :user
+
+  has_many :memberships
+  has_many :developers, through: :memberships
 
   validates :name, presence: true
 end

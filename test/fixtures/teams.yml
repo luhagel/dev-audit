@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+team1:
   name: Team1
+  user: user1
 
-two:
+team2:
   name: Team2
+  user: user2

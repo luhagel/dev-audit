@@ -34,7 +34,7 @@ gem 'nokogiri'
 gem 'bulma-rails'
 gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
 
-gem 'github_api'
+gem 'octokit', '~> 4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
@@ -43,6 +43,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'guard'
+  gem 'guard-minitest'
   # vulnarability testing
   gem 'brakeman'
   # better error display
@@ -62,6 +64,10 @@ end
 
 group :test do
   gem 'rails-controller-testing'
+  gem 'minitest-reporters'
+  gem 'minitest-rails-capybara'
+
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

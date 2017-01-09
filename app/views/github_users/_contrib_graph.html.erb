@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 <%= contribs.count + 4 %> 60">
+  <line x1="1" x2="<%= contribs.count + 3 %>" y1="30" y2="30" stroke-width="1" stroke="black"/>
+  <% line_offset = 2 %>
+  <% contribs.each do |line| %>
+    <line x1="<%= line_offset %>" x2="<%= line_offset %>"
+          y1="<%= 30 - line.to_i * 1.5 %>" y2="<%= 30 + line.to_i * 1.5 %>"
+          stroke-width="1"
+          class="graph-line" />
+    <% line_offset += 1 %>
+  <% end %>
+</svg>

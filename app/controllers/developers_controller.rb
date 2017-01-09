@@ -3,10 +3,6 @@ class DevelopersController < ApplicationController
 
   before_action :require_login
 
-  def index
-    @developers = Developer.all
-  end
-
   def new
     @team = Team.find(params[:team_id])
     @developer = Developer.new
@@ -15,10 +11,16 @@ class DevelopersController < ApplicationController
   def create
     @team = Team.find(params[:team_id])
     @developer = Developer.new(developer_params)
-    @developer.team = @team
-    git_graph = get_contrib_graph(@developer.username)
-    @developer.git_graph_html = git_graph
-    redirect_to [@team, @developer] if @developer.save
+
+    if @developer.save
+      @githubuser = GithubUser.create(login: @developer.username, developer_id: @developer.id)
+      @githubuser.pull_github_data
+      @githubuser.save
+
+      @developer.memberships.create(team: @team)
+
+      redirect_to [@team, @developer]
+    end
   end
 
   def show
@@ -29,7 +31,7 @@ class DevelopersController < ApplicationController
   private
 
   def developer_params
-    params.require(:developer).permit(:name, :username, :git_graph_html, :team_id)
+    params.require(:developer).permit(:username, :team_id)
   end
 
   def require_login

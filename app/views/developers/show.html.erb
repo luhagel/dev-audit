@@ -1,14 +1,18 @@
-<div class="card is-fullwidth">
-  <header class="card-header">
-    <p class="card-header-title">
-      Overview: <%= @developer.name %>
-    </p>
-  </header>
-  <div class="card-content">
-    <%== @developer.git_graph_html %>
+<section>
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-centered">
+        <h1 class="title">Overview: <%= @developer.github_user.name ? @developer.github_user.name : @developer.github_user.login %></h1>
+      </div>
+      <div class="column has-text-centered">
+        <%= link_to "Back to " + @team.name, team_path(@team), class: "button is-primary" %>
+      </div>
+    </div>
   </div>
-  <footer class="card-footer">
-    <%= link_to "Back", team_path(@team), class: "card-footer-item" %>
-    <a href="https://github.com/<%= @developer.username %>" target=_blank class="card-footer-item">Github Profile</a>
-  </footer>
-</div>
+</section>
+<br>
+<section>
+  <div class="container">
+    <%= render @developer.github_user %>
+  </div>
+</section>
