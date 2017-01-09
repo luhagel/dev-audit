@@ -1,3 +1,21 @@
+#topnav {
+  background-color: $primary;
+
+  padding: 5px 5px 0 5px;
+
+  .title {
+    color: $white;
+  }
+
+  span {
+    background-color: $white;
+  }
+}
+
+div#nav-toggle.nav-toggle:hover {
+  background-color: $primary;
+}
+
 #sidenav {
   background-color: $primary;
   margin-right: -10px;
@@ -14,10 +32,6 @@
 
 .is-active {
   border: $white solid 1px;
-}
-
-#topnav {
-  margin-right: -10px;
 }
 
 .menu {
