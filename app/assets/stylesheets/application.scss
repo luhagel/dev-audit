@@ -11,13 +11,15 @@
  * It is generally better to create a new file per style scope.
  *
  */
+@import url('https://fonts.googleapis.com/css?family=Oxygen|Roboto+Condensed');
 
 @import './variables';
 
-@import './general';
-@import './shared';
 @import './developers';
+@import './general';
+@import './github_users';
 @import './pages';
+@import './shared';
 
 @import 'bulma';
 @import 'font-awesome';
