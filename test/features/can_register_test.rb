@@ -3,7 +3,10 @@ require "test_helper"
 class CanRegisterTest < Capybara::Rails::TestCase
   scenario "can click register button" do
     visit root_path
-    click_on 'Register'
+
+    within '#sidenav' do
+      click_on 'Register'
+    end
     page.must_have_content 'Login instead'
   end
 
