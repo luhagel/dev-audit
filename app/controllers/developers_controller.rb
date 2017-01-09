@@ -12,20 +12,20 @@ class DevelopersController < ApplicationController
   def create
     @team = Team.find(params[:team_id])
     @developer = Developer.new(developer_params)
-    if Developer.where("username = ?", @developer.username)
-      Developer.where("username = ?", @developer.username).first.memberships.create(team: @team)
 
-      redirect_to [@team]
+    existing_dev = Developer.where(["username = ?", @developer.username]).first
+    if !existing_dev
+      if @developer.save
+        @githubuser = GithubUser.create(login: @developer.username, developer_id: @developer.id)
+        @githubuser.pull_github_data
+        @githubuser.save
 
-    elsif @developer.save
-      @githubuser = GithubUser.create(login: @developer.username, developer_id: @developer.id)
-      @githubuser.pull_github_data
-      @githubuser.save
-
-      @developer.memberships.create(team: @team)
-
-      redirect_to [@team]
+        @developer.memberships.create(team: @team)
+      end
+    else
+      existing_dev.memberships.create(team: @team)
     end
+    redirect_to [@team]
   end
 
   def show
@@ -35,7 +35,12 @@ class DevelopersController < ApplicationController
 
   def destroy
     @team = Team.find(params[:team_id])
-    Developer.find(params[:id]).destroy
+    @developer = Developer.find(params[:id])
+
+    Membership.destroy(Membership.where(["developer_id = ? and team_id = ?", @developer.id, @team.id]))
+
+    @developer.destroy if @developer.memberships.count.zero?
+
     redirect_to @team
   end
 
