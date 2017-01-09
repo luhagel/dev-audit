@@ -7,10 +7,20 @@
   <% @developers.each do |dev| %>
     <div class="column is-4">
     <%= link_to [@team, dev] do %>
-      <div class="box is-fullwidth">
-        <p class="title is-5"><b><%= dev.github_user.name ? dev.github_user.name : dev.github_user.login %></b> <i>@<%= dev.github_user.login %></i></p>
-        <div class="card-content">
-          <%= render 'github_users/contrib_graph', contribs: dev.github_user.contributions %>
+      <div class="box is-fullwidth media">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="https://avatars1.githubusercontent.com/u/<%= dev.github_user.user_id %>?v=3&s=64" class="github-avatar">
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong><%= dev.github_user.name ? dev.github_user.name : dev.github_user.login %></strong> <small>@<%= dev.github_user.login %></small>
+              <br>
+              <%= render 'github_users/contrib_graph', contribs: dev.github_user.contributions %>
+            </p>
+          </div>
         </div>
       </div>
       <% end %>
