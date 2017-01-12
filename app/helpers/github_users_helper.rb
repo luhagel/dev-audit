@@ -8,4 +8,15 @@ module GithubUsersHelper
     end
     graph_array
   end
+
+  def update_all_developer_info
+    @github_users = GithubUser.all
+    save_counter = 0
+    @github_users.each do |u|
+      puts u.login
+      u.contributions = get_contrib_data(u.login)
+      save_counter += 1 if u.save
+    end
+    puts 'SUCCESS: Updated ' + String(save_counter) + '/' + String(@github_users.count) + ' Developers!'
+  end
 end
