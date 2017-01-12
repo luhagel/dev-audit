@@ -1,5 +1,11 @@
 <div class="container has-text-centered">
-  <h1 class="title"><b><%= @team.name %></b></h1>
+  <h1 class="title"><b><%= @team.name %></b>
+    <% if owner? @team %>
+      <%= link_to @team, method: :delete, data: { confirm: "You sure?" } do %>
+        <span class="icon"><i class="fa fa-trash"></i></span>
+      <% end %>
+    <% end %>
+  </h1>
   <h4 class="subtitle">Please note that some people might not push all their work to Github, work in private repositories or on a feature branch.</h4>
 </div>
 <br>

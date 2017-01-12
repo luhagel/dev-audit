@@ -29,6 +29,16 @@ class TeamsController < ApplicationController
     end
   end
 
+  def destroy
+    @team = Team.find(params[:id])
+
+    Membership.destroy(Membership.where(["team_id = ?", @team.id]))
+
+    @team.destroy
+
+    redirect_to root_path
+  end
+
   private
   def team_params
     params.require(:team).permit(:name, :user_id, :is_public)
