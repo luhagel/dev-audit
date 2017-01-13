@@ -23,6 +23,27 @@ class CanCreateDeleteTeamsTest < Capybara::Rails::TestCase
     end
 
     page.must_have_content 'There is nothing here yet!'
+
+    click_link 'Add'
+
+    within '#new_developer' do
+      fill_in 'Github Username', with: 'luhagel'
+      click_button 'Add'
+    end
+
+    page.must_have_content "Luca Hagel"
+  end
+
+  scenario "can delete team" do
+    visit new_team_path
+
+    within ".new_team" do
+      fill_in 'How do you want to call your Team?', with: 'Test Delete'
+      click_button 'Create'
+    end
+
+    find(:class, '.delete-button').click
+    page.must_have_content "Welcome to DevAudit!"
   end
 
   def teardown

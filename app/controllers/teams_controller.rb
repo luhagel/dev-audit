@@ -32,7 +32,9 @@ class TeamsController < ApplicationController
   def destroy
     @team = Team.find(params[:id])
 
-    Membership.destroy(Membership.where(["team_id = ?", @team.id]))
+    memberships = Membership.where(["team_id = ?", @team.id])
+
+    memberships.destroy_all unless memberships.nil?
 
     @team.destroy
 
