@@ -1,7 +1,11 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 require 'simplecov'
-SimpleCov.start 'rails' unless ENV['NO_COVERAGE']
+SimpleCov.start 'rails'  do
+  add_filter do |source_file|
+    source_file.lines.count < 5
+  end unless ENV['NO_COVERAGE']
+end
 
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
