@@ -37,7 +37,7 @@ class DevelopersController < ApplicationController
     @team = Team.find(params[:team_id])
     @developer = Developer.find(params[:id])
 
-    Membership.destroy(Membership.where(["developer_id = ? and team_id = ?", @developer.id, @team.id]))
+    Membership.destroy(Membership.where(["developer_id = ? and team_id = ?", @developer.id, @team.id]).first)
 
     @developer.destroy if @developer.memberships.count.zero?
 
