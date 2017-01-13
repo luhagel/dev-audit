@@ -1,18 +1,24 @@
 <section>
   <div class="container">
     <div class="columns">
-      <div class="column has-text-centered">
-        <h1 class="title"><b>Overview: <%= @developer.github_user.name ? @developer.github_user.name : @developer.github_user.login %></b></h1>
-      </div>
-      <div class="column has-text-centered">
-        <%= link_to team_path(@team), class: "button is-primary is-outlined" do %>
-          <span class="icon"><i class="fa fa-chevron-left"></i></span> <%= @team.name %>
-        <% end %>
-        <% if owner? @team %>
-          <%= link_to [@team, @developer], method: :delete, class: "button is-danger", data: { confirm: "You sure?" } do %>
-            <span class="icon"><i class="fa fa-trash"></i></span> Remove
-          <% end %>
-        <% end %>
+      <div class="column is-12">
+        <div class="box is-fullwidth">
+          <div class="columns">
+            <div class="column has-text-centered">
+              <h1 class="title"><b>Overview: <%= @developer.github_user.name ? @developer.github_user.name : @developer.github_user.login %></b></h1>
+            </div>
+            <div class="column has-text-centered">
+              <%= link_to team_path(@team), class: "button is-primary is-outlined" do %>
+              <span class="icon"><i class="fa fa-chevron-left"></i></span> <%= @team.name %>
+              <% end %>
+              <% if owner? @team %>
+              <%= link_to [@team, @developer], method: :delete, class: "button is-danger", data: { confirm: "You sure?" } do %>
+              <span class="icon"><i class="fa fa-trash"></i></span> Remove
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
