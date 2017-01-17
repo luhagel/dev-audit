@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     resources :developers, only: [:show, :new, :create, :destroy]
   end
 
+  get '/.well-known/acme-challenge/:id' => 'pages#letsencrypt'
+
   #Root to landing page
   root to: "pages#show", page: "home"
 end
