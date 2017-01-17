@@ -43,7 +43,7 @@ class CanCreateDeleteTeamsTest < Capybara::Rails::TestCase
     end
 
     find(:class, '.delete-button').click
-    page.must_have_content "Welcome to DevAudit!"
+    page.must_have_content "Welcome to > dev status_"
   end
 
   def teardown
