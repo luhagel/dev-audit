@@ -17,7 +17,9 @@ div#nav-toggle.nav-toggle:hover {
 }
 
 #sidenav {
-  background-color: $primary;
+  background-color: rgb(102, 64, 119);
+  @include filter-gradient(#664077, #2c7a6c, horizontal);
+  @include background-image(linear-gradient(left top, rgba(102, 64, 119, 1) 0%, rgba(91, 39, 112, 1) 40%, rgba(44, 122, 108, 1) 100%));
   margin-right: -10px;
   margin-top: 10px;
 
@@ -30,7 +32,9 @@ div#nav-toggle.nav-toggle:hover {
   }
 }
 
-.is-active {
+.menu-list a.is-active {
+  background-color: $panel-background;
+
   border: $white solid 1px;
 }
 
@@ -44,6 +48,10 @@ div#nav-toggle.nav-toggle:hover {
   .menu-list {
     a {
       color: $white;
+    }
+
+    a:hover {
+      color: $primary;
     }
   }
 }
