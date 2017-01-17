@@ -16,19 +16,19 @@
 
 @import './variables';
 
+@import 'bulma';
+@import 'font-awesome';
+
 @import './developers';
 @import './general';
 @import './github_users';
 @import './pages';
 @import './shared';
 
-@import 'bulma';
-@import 'font-awesome';
+html {
+  background-color: #FAFAFF;
+}
 
 #content-wrapper {
   margin-top: 40px;
-}
-
-.columns {
-  margin-bottom: 0;
 }

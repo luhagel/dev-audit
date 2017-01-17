@@ -14,7 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 
-document.getElementById("nav-toggle").addEventListener ("click", toggleNav);
+$(function() {
+   document.getElementById("nav-toggle").addEventListener ("click", toggleNav);
+});
+
 function toggleNav() {
         var nav = document.getElementById("nav-menu");
         var className = nav.getAttribute("class");
