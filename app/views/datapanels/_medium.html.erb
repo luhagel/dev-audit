@@ -14,12 +14,14 @@
     <div class="level-item has-text-centered">
       <div>
         <p class="heading">Posts</p>
-        <p class="title"><%= @recent_stories[:user][:total_posts] %></p>
+        <p class="title"><%= @recent_stories[:user][:total_posts] ? @recent_stories[:user][:total_posts] : 0 %></p>
       </div>
     </div>
   </nav>
-  <% @recent_stories[:posts].each do |post| %>
-    <%= render partial: 'datapanels/publication', locals: { :p => post } %>
+  <% unless @recent_stories[:user][:total_posts].nil? %>
+    <% @recent_stories[:posts].each do |post| %>
+      <%= render partial: 'datapanels/publication', locals: { :p => post } %>
+    <% end %>
   <% end %>
 
   <div class="level">
