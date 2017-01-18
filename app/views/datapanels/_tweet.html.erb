@@ -1,0 +1,28 @@
+<%= link_to t.url.to_s do %>
+<div class="box">
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="<%= t.user.profile_image_url 'bigger' %>">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong><%= t.user.name %></strong> <small>@<%= t.user.screen_name %></small>
+        <br>
+        <%= t.text %>
+      </p>
+    </div>
+    <nav class="level">
+      <div class="level-left">
+      </div>
+    </nav>
+  </div>
+  <div class="media-right">
+
+  </div>
+</article>
+</div>
+<% end %>
+<br>

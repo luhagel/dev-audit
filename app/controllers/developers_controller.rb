@@ -12,25 +12,48 @@ class DevelopersController < ApplicationController
   def create
     @team = Team.find(params[:team_id])
     @developer = Developer.new(developer_params)
+    if exists?('https://github.com/' + @developer.username)
+      existing_dev = Developer.where(["username = ?", @developer.username]).first
+      if !existing_dev
+        if @developer.save
+          @githubuser = GithubUser.create(login: @developer.username, developer_id: @developer.id)
+          @githubuser.pull_github_data
+          @githubuser.save
 
-    existing_dev = Developer.where(["username = ?", @developer.username]).first
-    if !existing_dev
-      if @developer.save
-        @githubuser = GithubUser.create(login: @developer.username, developer_id: @developer.id)
-        @githubuser.pull_github_data
-        @githubuser.save
-
-        @developer.memberships.create(team: @team)
+          @developer.memberships.create(team: @team)
+        end
+      else
+        existing_dev.memberships.create(team: @team)
       end
+      redirect_to [@team]
     else
-      existing_dev.memberships.create(team: @team)
+      render 'new'
     end
-    redirect_to [@team]
   end
 
   def show
     @team = Team.find(params[:team_id])
     @developer = Developer.find(params[:id])
+
+    twitter_client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
+      config.consumer_secret     = ENV["TWIITER_CONSUMER_SECRET"]
+      config.access_token        = ENV["TWIITER_ACCESS_TOKEN"]
+      config.access_token_secret = ENV["TWIITER_ACCESS_SECRET"]
+    end
+
+    @recent_tweets = []
+    if exists?('https://twitter.com/' + @developer.username)
+      twitter_client.user_timeline(@developer.username)[0..4].each do |tweet|
+        @recent_tweets += [twitter_client.status(tweet.id)]
+      end
+    end
+
+    @recent_stories = []
+    if exists?('https://medium.com/@' + @developer.username)
+      @recent_stories = MediumScraper::Post.latest @developer.username
+    end
+
   end
 
   def destroy
@@ -60,5 +83,18 @@ class DevelopersController < ApplicationController
   def require_ownership
     @team = Team.find(params[:team_id])
     redirect_to @team unless owner?(@team)
+  end
+
+  def exists?(url)
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+
+    response = http.request(request)
+    puts response.code.to_s + ': ' + url
+    response.code.to_i == 200
   end
 end
