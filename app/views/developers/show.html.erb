@@ -2,7 +2,7 @@
   <div class="container">
     <div class="columns">
       <div class="column is-12">
-        <div class="box is-fullwidth">
+        <div class="box is-fullwidth datapanel primary">
           <div class="level">
             <div class="level-left">
               <h1 class="title"><b>Overview: <%= @developer.github_user.name ? @developer.github_user.name : @developer.github_user.login %></b></h1>
@@ -36,6 +36,10 @@
   <div class="columns is-multiline">
     <% unless @recent_tweets.empty? %>
       <%= render 'datapanels/twitter', object: @recent_tweets %>
+    <% end %>
+
+    <% unless @recent_stories.empty? %>
+      <%= render 'datapanels/medium', object: @recent_stories %>
     <% end %>
   </div>
 </section>

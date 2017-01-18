@@ -43,12 +43,17 @@ class DevelopersController < ApplicationController
     end
 
     @recent_tweets = []
-
     if exists?('https://twitter.com/' + @developer.username)
       twitter_client.user_timeline(@developer.username)[0..4].each do |tweet|
         @recent_tweets += [twitter_client.status(tweet.id)]
       end
     end
+
+    @recent_stories = []
+    if exists?('https://medium.com/@' + @developer.username)
+      @recent_stories = MediumScraper::Post.latest @developer.username
+    end
+
   end
 
   def destroy
@@ -89,7 +94,7 @@ class DevelopersController < ApplicationController
     request = Net::HTTP::Get.new(uri.request_uri)
 
     response = http.request(request)
-    puts response.code.to_i
+    puts response.code.to_s + ': ' + url
     response.code.to_i == 200
   end
 end
