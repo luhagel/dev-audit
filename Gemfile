@@ -39,10 +39,14 @@ gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
 
 gem 'octokit', '~> 4.0'
 
+gem 'twitter'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
   # console
   gem 'byebug', platform: :mri
+
+  gem 'dotenv-rails'
 end
 
 group :development do
