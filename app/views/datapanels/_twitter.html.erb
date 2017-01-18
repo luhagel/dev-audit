@@ -9,7 +9,7 @@
     <div class="level-right">
     </div>
   </header>
-  <nav class="level">
+  <nav class="level is-mobile">
     <div class="level-item has-text-centered">
       <div>
         <p class="heading">Tweets</p>
@@ -38,5 +38,11 @@
   <% @recent_tweets.each do |tweet| %>
     <%= render partial: 'datapanels/tweet', locals: { :t => tweet } %>
   <% end %>
+
+  <div class="level">
+      <div class="level-item has-text-centered">
+        <a href="https://twitter.com/<%= @developer.username %>" target=_blank class="button is-primary is-outlined">Go to Twitter Profile</a>
+      </div>
+    </div>
   </div>
 </div>

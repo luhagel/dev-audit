@@ -1,4 +1,3 @@
-<section>
 <div class="box">
   <header class="level">
     <div class="level-left">
@@ -10,7 +9,7 @@
     <p class="">Last Updated: <%= github_user.updated_at %></p>
     </div>
   </header>
-  <nav class="level">
+  <nav class="level is-mobile">
     <div class="level-item has-text-centered">
       <div>
         <p class="heading">Repos</p>
@@ -48,10 +47,9 @@
       <p class="title is-5"><strong>Contribution Timeline:</strong></p>
       <%= render 'github_users/contrib_graph', contribs: github_user.contributions %>
     </div>
-    <div class="level">
+    <div class="level is-mobile">
       <div class="level-item has-text-centered">
         <a href="https://github.com/<%= @developer.username %>" target=_blank class="button is-primary is-outlined">Go to Github Profile</a>
       </div>
     </div>
   </div>
-</section>
