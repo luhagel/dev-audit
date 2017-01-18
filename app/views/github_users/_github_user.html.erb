@@ -10,6 +10,32 @@
     <p class="">Last Updated: <%= github_user.updated_at %></p>
     </div>
   </header>
+  <nav class="level">
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Repos</p>
+        <p class="title"><%= github_user.public_repos %></p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Gists</p>
+        <p class="title"><%= github_user.public_gists %></p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Following</p>
+        <p class="title"><%= github_user.following %></p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Followers</p>
+        <p class="title"><%= github_user.followers %></p>
+      </div>
+    </div>
+  </nav>
     <div class="box">
       <p class="title is-5"><strong>Personal:</strong></p>
       <p><strong>Lives In:</strong> <%= github_user.location ? github_user.location : 'N/A' %></p>
@@ -17,13 +43,6 @@
       <p><strong>Website:</strong> <a href="<%= github_user.blog %>" target="_blank"><%= github_user.blog ? github_user.blog : 'N/A' %></a></p>
       <p><strong>Currently Works At/As:</strong> <%= github_user.company ? github_user.company : 'N/A' %></p>
       <p><strong>Github Bio:</strong> <%= github_user.bio ? github_user.bio : 'N/A' %></p>
-    </div>
-    <div class="box">
-      <p class="title is-5"><strong>Repository Summary:</strong></p>
-      <p><strong>Public Repositories:</strong> <%= github_user.public_repos %></p>
-      <p><strong>Public Gists:</strong> <%= github_user.public_gists %></p>
-      <p><strong>Followers:</strong> <%= github_user.followers %></p>
-      <p><strong>Following:</strong> <%= github_user.following %></p>
     </div>
     <div class="box">
       <p class="title is-5"><strong>Contribution Timeline:</strong></p>
