@@ -1,0 +1,32 @@
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="<%= t.user.profile_image_url 'bigger' %>">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong><%= t.user.name %></strong> <small>@<%= t.user.screen_name %></small>
+        <br>
+        <%= t.text %>
+      </p>
+    </div>
+    <nav class="level">
+      <div class="level-left">
+        <a class="level-item">
+          <span class="icon is-small"><i class="fa fa-reply"></i></span>
+        </a>
+        <a class="level-item">
+          <span class="icon is-small"><i class="fa fa-retweet"></i></span>
+        </a>
+        <a class="level-item">
+          <span class="icon is-small"><i class="fa fa-heart"></i></span>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <div class="media-right">
+
+  </div>
+</article>

@@ -31,6 +31,21 @@ class DevelopersController < ApplicationController
   def show
     @team = Team.find(params[:team_id])
     @developer = Developer.find(params[:id])
+
+    twitter_client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
+      config.consumer_secret     = ENV["TWIITER_CONSUMER_SECRET"]
+      config.access_token        = ENV["TWIITER_ACCESS_TOKEN"]
+      config.access_token_secret = ENV["TWIITER_ACCESS_SECRET"]
+    end
+
+    @recent_tweets = []
+
+    if exists?('https://twitter.com/' + @developer.username)
+      twitter_client.user_timeline(@developer.username)[0..4].each do |tweet|
+        @recent_tweets += [twitter_client.status(tweet.id)]
+      end
+    end
   end
 
   def destroy
@@ -60,5 +75,18 @@ class DevelopersController < ApplicationController
   def require_ownership
     @team = Team.find(params[:team_id])
     redirect_to @team unless owner?(@team)
+  end
+
+  def exists?(url)
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+
+    response = http.request(request)
+    puts response.code.to_i
+    response.code.to_i == 200
   end
 end

@@ -31,3 +31,11 @@
     <%= render @developer.github_user %>
   </div>
 </section>
+<br>
+<section>
+  <div class="columns is-multiline">
+    <% unless @recent_tweets.empty? %>
+      <%= render 'datapanels/twitter', object: @recent_tweets %>
+    <% end %>
+  </div>
+</section>
