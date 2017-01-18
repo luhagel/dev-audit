@@ -12,20 +12,23 @@ class DevelopersController < ApplicationController
   def create
     @team = Team.find(params[:team_id])
     @developer = Developer.new(developer_params)
+    if exitst?('https://github.com/' + @developer.username)
+      existing_dev = Developer.where(["username = ?", @developer.username]).first
+      if !existing_dev
+        if @developer.save
+          @githubuser = GithubUser.create(login: @developer.username, developer_id: @developer.id)
+          @githubuser.pull_github_data
+          @githubuser.save
 
-    existing_dev = Developer.where(["username = ?", @developer.username]).first
-    if !existing_dev
-      if @developer.save
-        @githubuser = GithubUser.create(login: @developer.username, developer_id: @developer.id)
-        @githubuser.pull_github_data
-        @githubuser.save
-
-        @developer.memberships.create(team: @team)
+          @developer.memberships.create(team: @team)
+        end
+      else
+        existing_dev.memberships.create(team: @team)
       end
+      redirect_to [@team]
     else
-      existing_dev.memberships.create(team: @team)
+      render 'new'
     end
-    redirect_to [@team]
   end
 
   def show
