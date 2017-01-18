@@ -12,7 +12,7 @@ class DevelopersController < ApplicationController
   def create
     @team = Team.find(params[:team_id])
     @developer = Developer.new(developer_params)
-    if exitst?('https://github.com/' + @developer.username)
+    if exists?('https://github.com/' + @developer.username)
       existing_dev = Developer.where(["username = ?", @developer.username]).first
       if !existing_dev
         if @developer.save
