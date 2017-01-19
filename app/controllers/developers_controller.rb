@@ -41,17 +41,15 @@ class DevelopersController < ApplicationController
       config.access_token        = ENV["TWIITER_ACCESS_TOKEN"]
       config.access_token_secret = ENV["TWIITER_ACCESS_SECRET"]
     end
-
-    @recent_tweets = []
-    if exists?('https://twitter.com/' + @developer.username)
-      twitter_client.user_timeline(@developer.username)[0..4].each do |tweet|
+    unless  @developer.twitter_username == ""
+      @recent_tweets = []
+      twitter_client.user_timeline(@developer.twitter_username)[0..4].each do |tweet|
         @recent_tweets += [twitter_client.status(tweet.id)]
       end
     end
-
-    @recent_stories = []
-    if exists?('https://medium.com/@' + @developer.username)
-      @recent_stories = MediumScraper::Post.latest @developer.username
+    unless  @developer.medium_username == ""
+      @recent_stories = []
+      @recent_stories = MediumScraper::Post.latest @developer.medium_username
     end
 
   end

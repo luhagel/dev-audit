@@ -3,7 +3,7 @@
     <header class="level">
     <div class="level-left">
       <p class="">
-        <span class="icon has-medium-text"><i class="fa fa-medium"></i></span> @<%= @developer.username %>
+        <span class="icon has-medium-text"><i class="fa fa-medium"></i></span> @<%= @developer.medium_username %>
       </p>
     </div>
     <div class="level-right">
@@ -19,7 +19,7 @@
       </div>
     </nav>
     <% unless @recent_stories[:user][:total_posts].nil? %>
-      <% @recent_stories[:posts].each do |post| %>
+      <% @recent_stories[:posts][0..4].each do |post| %>
         <%= render partial: 'datapanels/publication', locals: { :p => post } %>
       <% end %>
     <% end %>

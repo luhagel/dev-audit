@@ -1,0 +1,24 @@
+<div class="column is-6">
+  <div class="box is-fullwidth datapanel twitter">
+    <header class="level">
+    <div class="level-left">
+      <p class="title is-5">
+        <span class="icon has-twitter-text"><i class="fa fa-twitter"></i></span> Couldn't find <%= @developer.github_user.name %> on Twitter, add his/her username below!
+      </p>
+    </div>
+    <div class="level-right">
+    </div>
+    </header>
+    <hr>
+    <div class="box">
+      <label for="twitter" class="label">Twitter Username:</label>
+      <input type="text" name="twitter" class="input">
+    </div>
+
+    <div class="level">
+      <div class="level-item has-text-centered">
+        <a href="https://twitter.com/@<%= @developer.username %>" target=_blank class="button is-primary is-outlined has-twitter-text is-disabled">Submit</a>
+      </div>
+    </div>
+  </div>
+</div>
