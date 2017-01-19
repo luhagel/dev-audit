@@ -1,3 +1,4 @@
+<% cache(contribs) do %>
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 <%= contribs.count + 4 %> 60" class="contrib-graph">
   <line x1="1" x2="<%= contribs.count + 3 %>" y1="30" y2="30" stroke-width="1" stroke="black"/>
   <% line_offset = 2 %>
@@ -9,3 +10,4 @@
     <% line_offset += 1 %>
   <% end %>
 </svg>
+<% end %>
