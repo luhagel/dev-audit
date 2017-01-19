@@ -28,4 +28,17 @@ Rails.application.routes.draw do
 
   #Root to landing page
   root to: "pages#show", page: "home"
+
+  def query_params_to_query(request)
+    query_params = request.params.except(:path, :format)
+    query_params.any? ? "?#{query_params.to_query}" : ""
+  end
+
+  constraints(host: %r{^dev-stat.us}) do
+    redirect_action = ->(params, _request) do
+      "https://www.dev-stat.us/#{params[:path]}#{query_params_to_query(_request)}"
+    end
+    root to: redirect(redirect_action)
+    match '/*path', to: redirect(redirect_action), via: [:get, :post]
+  end
 end
