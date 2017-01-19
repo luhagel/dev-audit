@@ -5,6 +5,7 @@
       <div class="card-content">
         <%= form_for @team do |team| %>
           <p class="control">
+            <%= team.label "Team Name", for:"name", id:"name", class: 'label' %>
             <%= team.text_field :name, placeholder: "How do you want to call your Team?", class: 'input' %>
           </p>
           <p class="control">
