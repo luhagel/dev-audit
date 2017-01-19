@@ -14,25 +14,25 @@
     <div class="level-item has-text-centered">
       <div>
         <p class="heading">Tweets</p>
-        <p class="title"><%= @recent_tweets.first.user.tweets_count %></p>
+        <p class="title"><%= @twitter_user.tweets_count %></p>
       </div>
     </div>
     <div class="level-item has-text-centered">
       <div>
         <p class="heading">Following</p>
-        <p class="title"><%= @recent_tweets.first.user.friends_count %></p>
+        <p class="title"><%= @twitter_user.friends_count %></p>
       </div>
     </div>
     <div class="level-item has-text-centered">
       <div>
         <p class="heading">Followers</p>
-        <p class="title"><%= @recent_tweets.first.user.followers_count %></p>
+        <p class="title"><%= @twitter_user.followers_count %></p>
       </div>
     </div>
     <div class="level-item has-text-centered">
       <div>
         <p class="heading">Likes</p>
-        <p class="title"><%= @recent_tweets.first.user.favourites_count %></p>
+        <p class="title"><%= @twitter_user.favourites_count %></p>
       </div>
     </div>
   </nav>
