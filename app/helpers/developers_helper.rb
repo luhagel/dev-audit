@@ -5,17 +5,21 @@ module DevelopersHelper
     current_user == team.user && !current_user.nil?
   end
 
-  def find_account_matches
+  def find_all_account_matches
     @developers = Developer.all
     @developers.each do |dev|
-      if exists?('https://twitter.com/' + dev.username) && dev.twitter_username == ""
+      find_account_matches dev
+    end
+  end
+
+  def find_account_matches(dev)
+    if exists?('https://twitter.com/' + dev.username) && dev.twitter_username == ""
         dev.twitter_username = dev.username
       end
       if exists?('https://medium.com/@' + dev.username) && dev.medium_username == ""
         dev.medium_username = dev.username
       end
       dev.save
-    end
   end
 
   def exists?(url)
