@@ -34,11 +34,11 @@
 <br>
 <section>
   <div class="columns is-multiline">
-    <% unless @recent_tweets.empty? %>
+    <% unless @recent_tweets.nil? %>
       <%= render 'datapanels/twitter', object: @recent_tweets %>
     <% end %>
 
-    <% unless @recent_stories.empty? %>
+    <% unless @recent_stories.nil? %>
       <%= render 'datapanels/medium', object: @recent_stories %>
     <% end %>
   </div>
