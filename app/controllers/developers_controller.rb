@@ -45,6 +45,7 @@ class DevelopersController < ApplicationController
     end
     unless  @developer.twitter_username == ""
       @recent_tweets = []
+      @twitter_user = twitter_client.user(@developer.twitter_username)
       twitter_client.user_timeline(@developer.twitter_username)[0..4].each do |tweet|
         @recent_tweets += [twitter_client.status(tweet.id)]
       end
