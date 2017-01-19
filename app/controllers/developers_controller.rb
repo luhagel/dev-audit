@@ -20,6 +20,8 @@ class DevelopersController < ApplicationController
           @githubuser.pull_github_data
           @githubuser.save
 
+          find_account_matches @developer
+
           @developer.memberships.create(team: @team)
         end
       else
