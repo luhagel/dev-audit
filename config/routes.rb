@@ -34,9 +34,9 @@ Rails.application.routes.draw do
     query_params.any? ? "?#{query_params.to_query}" : ""
   end
 
-  constraints(host: %r{^dev-stat.us}) do
+  constraints(host: %r{^www.dev-stat.us}) do
     redirect_action = ->(params, _request) do
-      "https://www.dev-stat.us/#{params[:path]}#{query_params_to_query(_request)}"
+      "https://dev-stat.us/#{params[:path]}#{query_params_to_query(_request)}"
     end
     root to: redirect(redirect_action)
     match '/*path', to: redirect(redirect_action), via: [:get, :post]
