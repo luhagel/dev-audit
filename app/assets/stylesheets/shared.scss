@@ -43,6 +43,9 @@ div#nav-toggle.nav-toggle:hover {
 
   .menu-label {
     color: $light-grey;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: underline;
   }
 
   .menu-list {
@@ -54,6 +57,10 @@ div#nav-toggle.nav-toggle:hover {
       color: $primary;
     }
   }
+}
+
+.menu-divider {
+  margin-right: -10px;
 }
 
 #footer {

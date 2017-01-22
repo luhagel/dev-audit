@@ -1,6 +1,7 @@
   <aside class="column is-2 aside hero is-fullheight is-hidden-touch" id="sidenav">
   <div class="sidenav">
     <a href="/"><div class="title is-4 has-text-centered"><b>> dev status_</b></div></a>
+    <hr class="menu-divider">
     <br>
     <div class="menu">
       <% if logged_in? %>
@@ -32,7 +33,11 @@
       <p class="menu-label">Some Public Teams</p>
       <ul class="menu-list">
         <% Team.where(is_public: true).limit(10).each do |team| %>
-          <li><%= link_to team.user.name + '/' + team.name, team, class: active?(team) %></li>
+          <li>
+          <%= link_to team, class: active?(team)  do %>
+            <i><%=  team.user.name %></i><b>/<%= team.name %></b>
+          <% end %>
+          </li>
         <% end %>
       </ul>
     </div>
