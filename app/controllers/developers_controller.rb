@@ -56,7 +56,16 @@ class DevelopersController < ApplicationController
     end
     unless @developer.medium_username == ''
       @recent_stories = []
-      @recent_stories = MediumScraper::Post.latest @developer.medium_username
+
+      # Disable Medium for now
+      # begin
+      #   @recent_stories = MediumScraper::Post.latest @developer.medium_username
+      # rescue JSON::ParserError
+      #   $stderr.print 'json parsing error'
+      #   @recent_stories = []
+      #   @recent_stories[:user] = []
+      #   @recent_stories[:user][:total_posts] = 0
+      # end
     end
 
   end
