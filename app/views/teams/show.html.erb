@@ -27,6 +27,15 @@
               <%= render 'github_users/contrib_graph', contribs: dev.github_user.contributions %>
             </p>
           </div>
+          <nav class="level is-mobile">
+            <div class="level-left">
+              <% dev.github_user.prefered_languages.each do |lang| %>
+                <div class="level-item">
+                  <span class="tag is-primary"><%= lang %></span>
+                </div>
+              <% end %>
+            </div>
+          </nav>
         </div>
       </div>
       <% end %>
