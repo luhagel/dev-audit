@@ -1,3 +1,4 @@
+# Github Users Controller
 class GithubUsersController < ApplicationController
   include GithubUsersHelper
 

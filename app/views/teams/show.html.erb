@@ -25,6 +25,12 @@
               <strong><%= dev.github_user.name ? dev.github_user.name : dev.github_user.login %></strong> <small>@<%= dev.github_user.login %></small>
               <br>
               <%= render 'github_users/contrib_graph', contribs: dev.github_user.contributions %>
+              <br>
+              <span>
+                <% dev.github_user.prefered_languages.each do |lang| %>
+                  <span class="tag is-primary"><%= lang %></span>
+                <% end %>
+              </span>
             </p>
           </div>
         </div>
