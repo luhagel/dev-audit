@@ -42,7 +42,7 @@ class CanCreateDeleteTeamsTest < Capybara::Rails::TestCase
       click_button 'Create'
     end
 
-    find(:class, '.delete-button').click
+    find('.delete-button').click
     page.must_have_content "Welcome to > dev status_"
   end
 
