@@ -10,6 +10,18 @@ module GithubUsersHelper
     graph_array
   end
 
+  def get_prefered_languages(username)
+    doc = Nokogiri::HTML(open('https://www.github.com/' + username))
+    pinned = doc.css('.pinned-repos-list')
+    languages_array = []
+    pinned.css('.pinned-repo-item').each do |repo|
+      lang = repo.css('p.mb-0').children[2].text.strip
+      puts lang
+      languages_array += [lang]
+    end
+    languages_array
+  end
+
   def update_all_developer_info
     @github_users = GithubUser.all
     save_counter = 0
