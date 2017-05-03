@@ -1,3 +1,4 @@
+# Github User
 class GithubUser < ApplicationRecord
   include GithubUsersHelper
   belongs_to :developer
