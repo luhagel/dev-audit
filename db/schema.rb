@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119070913) do
+ActiveRecord::Schema.define(version: 20170503022059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,21 +27,22 @@ ActiveRecord::Schema.define(version: 20170119070913) do
   create_table "github_users", force: :cascade do |t|
     t.string   "login"
     t.integer  "user_id"
-    t.string   "name",          default: ""
-    t.string   "company",       default: ""
-    t.string   "blog",          default: ""
-    t.string   "location",      default: ""
-    t.string   "email",         default: ""
-    t.boolean  "hireable",      default: false
-    t.string   "bio",           default: ""
-    t.integer  "public_repos",  default: 0
-    t.integer  "public_gists",  default: 0
-    t.integer  "followers",     default: 0
-    t.integer  "following",     default: 0
-    t.integer  "contributions", default: [],                 array: true
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "name",               default: ""
+    t.string   "company",            default: ""
+    t.string   "blog",               default: ""
+    t.string   "location",           default: ""
+    t.string   "email",              default: ""
+    t.boolean  "hireable",           default: false
+    t.string   "bio",                default: ""
+    t.integer  "public_repos",       default: 0
+    t.integer  "public_gists",       default: 0
+    t.integer  "followers",          default: 0
+    t.integer  "following",          default: 0
+    t.integer  "contributions",      default: [],                 array: true
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "developer_id"
+    t.string   "prefered_languages", default: [],                 array: true
     t.index ["developer_id"], name: "index_github_users_on_developer_id", using: :btree
   end
 
@@ -64,9 +65,11 @@ ActiveRecord::Schema.define(version: 20170119070913) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "password_digest"
+    t.boolean  "email_confirmed", default: false
+    t.string   "confirm_token"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
