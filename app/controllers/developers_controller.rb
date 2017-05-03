@@ -13,10 +13,14 @@ class DevelopersController < ApplicationController
     @team = Team.find(params[:team_id])
     @developer = Developer.new(developer_params)
     if exists?('https://github.com/' + @developer.username)
-      existing_dev = Developer.where(["username = ?", @developer.username]).first
+      existing_dev = Developer
+                     .where(['username = ?', @developer.username])
+                     .first
+
       if !existing_dev
         if @developer.save
-          @githubuser = GithubUser.create(login: @developer.username, developer_id: @developer.id)
+          @githubuser = GithubUser.create(login: @developer.username,
+                                          developer_id: @developer.id)
           @githubuser.pull_github_data
           @githubuser.save
 
@@ -38,19 +42,19 @@ class DevelopersController < ApplicationController
     @developer = Developer.find(params[:id])
 
     twitter_client = Twitter::REST::Client.new do |config|
-      config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
-      config.consumer_secret     = ENV["TWIITER_CONSUMER_SECRET"]
-      config.access_token        = ENV["TWIITER_ACCESS_TOKEN"]
-      config.access_token_secret = ENV["TWIITER_ACCESS_SECRET"]
+      config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+      config.consumer_secret     = ENV['TWIITER_CONSUMER_SECRET']
+      config.access_token        = ENV['TWIITER_ACCESS_TOKEN']
+      config.access_token_secret = ENV['TWIITER_ACCESS_SECRET']
     end
-    unless  @developer.twitter_username == ""
+    unless @developer.twitter_username == ''
       @recent_tweets = []
       @twitter_user = twitter_client.user(@developer.twitter_username)
       twitter_client.user_timeline(@developer.twitter_username)[0..4].each do |tweet|
         @recent_tweets += [twitter_client.status(tweet.id)]
       end
     end
-    unless  @developer.medium_username == ""
+    unless @developer.medium_username == ''
       @recent_stories = []
       @recent_stories = MediumScraper::Post.latest @developer.medium_username
     end

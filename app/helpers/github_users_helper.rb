@@ -17,6 +17,7 @@ module GithubUsersHelper
       u.contributions = get_contrib_data(u.login)
       save_counter += 1 if u.save
     end
-    puts 'SUCCESS: Updated ' + String(save_counter) + '/' + String(@github_users.count) + ' Developers!'
+    puts 'SUCCESS: Updated ' + String(save_counter) + '/'
+    + String(@github_users.count) + ' Developers!'
   end
 end

@@ -13,13 +13,13 @@ module DevelopersHelper
   end
 
   def find_account_matches(dev)
-    if exists?('https://twitter.com/' + dev.username) && dev.twitter_username == ""
-        dev.twitter_username = dev.username
-      end
-      if exists?('https://medium.com/@' + dev.username) && dev.medium_username == ""
-        dev.medium_username = dev.username
-      end
-      dev.save
+    if exists?('https://twitter.com/' + dev.username) && dev.twitter_username == ''
+      dev.twitter_username = dev.username
+    end
+    if exists?('https://medium.com/@' + dev.username) && dev.medium_username == ''
+      dev.medium_username = dev.username
+    end
+    dev.save
   end
 
   def exists?(url)
