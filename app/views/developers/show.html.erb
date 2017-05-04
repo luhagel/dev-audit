@@ -47,3 +47,13 @@
     <% end %>
   </div>
 </section>
+<br>
+<section>
+  <div class="container">
+    <% if !@developer.resume_link.nil? %>
+      <div class="box has-text-centered">
+        <%= link_to "Get Resume", @developer.resume_link, class: "button is-primary is-large", target: "_blank" %>
+      </div>
+    <% end %>
+  </div>
+</section>
