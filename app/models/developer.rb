@@ -6,3 +6,4 @@ class Developer < ApplicationRecord
 
   validates :username, presence: true
 end
+

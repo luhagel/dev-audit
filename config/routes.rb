@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :github_users, only: [:create]
 
   resources :teams, only: [:show, :new, :create, :destroy] do
-    resources :developers, only: [:show, :new, :create, :destroy]
+    resources :developers, only: [:show, :new, :create, :destroy, :edit, :update]
   end
 
   #get '/.well-known/acme-challenge/:id' => 'pages#letsencrypt'

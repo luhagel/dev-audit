@@ -2,7 +2,7 @@ class DevelopersController < ApplicationController
   include DevelopersHelper
 
   before_action :require_login, only: [:new, :create, :destroy]
-  before_action :require_ownership, only: [:destroy]
+  before_action :require_ownership, only: [:destroy, :edit, :update]
 
   def new
     @team = Team.find(params[:team_id])
@@ -50,7 +50,7 @@ class DevelopersController < ApplicationController
     unless @developer.twitter_username == ''
       @recent_tweets = []
       @twitter_user = twitter_client.user(@developer.twitter_username)
-      twitter_client.user_timeline(@developer.twitter_username)[0..4].each do |tweet|
+      twitter_client.user_timeline(@developer.twitter_username)[0..2].each do |tweet|
         @recent_tweets += [twitter_client.status(tweet.id)]
       end
     end
@@ -70,6 +70,20 @@ class DevelopersController < ApplicationController
 
   end
 
+  def edit
+    @developer = Developer.find(params[:id])
+  end
+
+  def update
+    @team = Team.find(params[:team_id])
+    @developer = Developer.find(params[:id])
+    if @developer.update_attributes(developer_params)
+      redirect_to [@team, @developer]
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     @team = Team.find(params[:team_id])
     @developer = Developer.find(params[:id])
@@ -84,7 +98,7 @@ class DevelopersController < ApplicationController
   private
 
   def developer_params
-    params.require(:developer).permit(:username, :team_id)
+    params.require(:developer).permit(:username, :team_id, :medium_username, :twitter_username, :resume_link)
   end
 
   def require_login

@@ -16,6 +16,9 @@
                 <%= link_to [@team, @developer], method: :delete, class: "button is-danger", data: { confirm: "Are you sure?" } do %>
                 <span class="icon"><i class="fa fa-trash"></i></span> Remove
                 <% end %>
+                <%= link_to edit_team_developer_path([@team, @developer]), class: "button is-secondary" do %>
+                <span class="icon"><i class="fa fa-edit"></i></span> Edit
+                <% end %>
                 <% end %>
               </div>
             </div>
@@ -44,6 +47,18 @@
       <%= render 'datapanels/medium', object: @recent_stories %>
     <% elsif %>
       <%= render 'datapanels/medium_add' %>
+    <% end %>
+  </div>
+</section>
+<br>
+<section>
+  <div class="container">
+    <% if !@developer.resume_link.nil? %>
+      <div class="box has-text-centered">
+        <%= link_to "Get Resume", @developer.resume_link, class: "button is-primary is-large", target: "_blank" %>
+      </div>
+    <% elsif owner? @team %>
+      <%= render 'datapanels/resume_add' %>
     <% end %>
   </div>
 </section>
