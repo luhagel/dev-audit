@@ -10,14 +10,14 @@
             <div class="level-right">
               <div class="control">
                 <%= link_to team_path(@team), class: "button is-primary is-outlined" do %>
-                  <span class="icon"><i class="fa fa-chevron-left"></i></span> <%= @team.name %>
+                  <span class="icon"><i class="fa fa-chevron-left"></i></span><span>  <%= @team.name %></span>
                 <% end %>
                 <% if owner? @team %>
                 <%= link_to [@team, @developer], method: :delete, class: "button is-danger", data: { confirm: "Are you sure?" } do %>
-                  <span class="icon"><i class="fa fa-trash"></i></span> Remove
+                  <span class="icon"><i class="fa fa-trash"></i></span><span>  Remove</span>
                 <% end %>
-                <%= link_to edit_team_developer_path([@team, @developer]), class: "button is-secondary" do %>
-                  <span class="icon"><i class="fa fa-edit"></i></span> Edit
+                <%= link_to edit_team_developer_path([@team, @developer]), class: "button is-primary" do %>
+                  <span class="icon"><i class="fa fa-edit"></i></span><span>  Edit</span>
                 <% end %>
                 <% end %>
               </div>
