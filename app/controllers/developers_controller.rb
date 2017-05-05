@@ -2,7 +2,7 @@ class DevelopersController < ApplicationController
   include DevelopersHelper
 
   before_action :require_login, only: [:new, :create, :destroy]
-  before_action :require_ownership, only: [:destroy]
+  before_action :require_ownership, only: [:destroy, :edit, :update]
 
   def new
     @team = Team.find(params[:team_id])
@@ -67,6 +67,14 @@ class DevelopersController < ApplicationController
       #   @recent_stories[:user][:total_posts] = 0
       # end
     end
+
+  end
+
+  def edit
+    @developer = Developer.find(params[:id])
+  end
+
+  def update
 
   end
 
