@@ -6,8 +6,12 @@
         <%= form_for [@team, @developer] do |dev| %>
           <input name="_method" type="hidden" value="patch" />
           <p class="control">
-            <%= dev.label :username, "The Developers Github Username", class: 'label' %>
-            <%= dev.text_field :username, placeholder: "Username", class: 'input' %>
+            <%= dev.label :medium_username, "Medium Username", class: 'label' %>
+            <%= dev.text_field :medium_username, placeholder: "Medium Username", class: 'input' %>
+            <%= dev.label :twitter_username, "Twitter Username", class: 'label' %>
+            <%= dev.text_field :twitter_username, placeholder: "Twitter Username", class: 'input' %>
+            <%= dev.label :resume_link, "Resume Link", class: 'label' %>
+            <%= dev.text_field :resume_link, placeholder: "https://linktoresume.com", class: 'input' %>
           </p>
           <br>
           <p class="control"><%= dev.submit "Save Changes", class: "button is-primary is-outlined" %></p>

@@ -75,7 +75,13 @@ class DevelopersController < ApplicationController
   end
 
   def update
-
+    @team = Team.find(params[:team_id])
+    @developer = Developer.find(params[:id])
+    if @developer.update_attributes(developer_params)
+      redirect_to [@team, @developer]
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -92,7 +98,7 @@ class DevelopersController < ApplicationController
   private
 
   def developer_params
-    params.require(:developer).permit(:username, :team_id)
+    params.require(:developer).permit(:username, :team_id, :medium_username, :twitter_username, :resume_link)
   end
 
   def require_login
