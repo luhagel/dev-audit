@@ -1,12 +1,25 @@
 <div class="container has-text-centered">
-  <h1 class="title"><b><%= @team.name %></b>
-    <% if owner? @team %>
-      <%= link_to @team, method: :delete, data: { confirm: "You sure?" }, class: 'delete-button' do %>
-        <span class="icon"><i class="fa fa-trash"></i></span>
+  <div class="box has-text-centered">
+    <h1 class="title"><b><%= @team.name %></b>
+      <% if owner? @team %>
+        <%= link_to @team, method: :delete, data: { confirm: "You sure?" }, class: 'delete-button' do %>
+          <span class="icon"><i class="fa fa-trash"></i></span>
+        <% end %>
       <% end %>
-    <% end %>
-  </h1>
-  <h4 class="subtitle">Please note that some people might not push all their work to Github, work in private repositories or on a feature branch.</h4>
+    </h1>
+    <h4 class="subtitle">Please note that some people might not push all their work to Github, work in private repositories or on a feature branch.</h4>
+    <hr>
+    <%= form_tag(team_path, :method => "get", id: "search-form") do %>
+      <div class="field has-addons">
+        <p class="control">
+          <%= text_field_tag :search, params[:search], placeholder: "Search Developers", class: "input" %>
+        </p>
+        <p class="control">
+          <%= submit_tag "Search", :name => nil, class: "button is-primary" %>
+        </p>
+      </div>
+    <% end %>  
+  </div>
 </div>
 <br>
 <div class="columns is-multiline">
