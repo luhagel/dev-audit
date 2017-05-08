@@ -7,7 +7,9 @@ class Developer < ApplicationRecord
   validates :username, presence: true
 
   def self.search(search)
-    joins(:github_user).where("github_users.name ILIKE ? OR github_users.login ILIKE ?", "%#{search}%", "%#{search}%").references(:github_user)
+    search_array = []
+    search_array += [search]
+    joins(:github_user).where("github_users.name ILIKE ? OR github_users.login ILIKE ? OR ARRAY[?]::varchar[] && github_users.prefered_languages", "%#{search}%", "%#{search}%", [search]).references(:github_user)
   end
 end
 
