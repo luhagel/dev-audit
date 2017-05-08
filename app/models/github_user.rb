@@ -22,5 +22,6 @@ class GithubUser < ApplicationRecord
     self.following = user_data.following
 
     self.contributions = get_contrib_data(user_data.login)
+    self.prefered_languages = get_prefered_languages(user_data.login).to_a
   end
 end

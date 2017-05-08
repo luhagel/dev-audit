@@ -18,7 +18,9 @@ module GithubUsersHelper
       lang = repo.css('p.mb-0').children[2]
       if lang
         lang = lang.text.strip
-        languages_array += [lang]
+        if lang != ''
+          languages_array += [lang]
+        end
       end
     end
     languages_array.to_set

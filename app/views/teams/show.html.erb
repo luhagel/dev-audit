@@ -18,6 +18,19 @@
           <p class="image is-64x64">
             <img src="https://avatars1.githubusercontent.com/u/<%= dev.github_user.user_id %>?v=3&s=128" class="github-avatar">
           </p>
+          <div class="level-center">
+            <div class="level-item">
+              <% if dev.github_user.hireable %>
+                <span class="tag is-outlined is-success hired-status">
+                  Hireable
+                </span>
+              <% else %>
+                <span class="tag is-outlined is-danger hired-status">
+                  Hired
+                </span>
+              <% end %>
+            </div>
+          </div>
         </figure>
         <div class="media-content">
           <div class="content">

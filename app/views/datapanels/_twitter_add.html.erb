@@ -10,14 +10,12 @@
     </div>
     </header>
     <hr>
-    <div class="box">
-      <label for="twitter" class="label">Twitter Username:</label>
-      <input type="text" name="twitter" class="input">
-    </div>
 
     <div class="level">
       <div class="level-item has-text-centered">
-        <a href="https://twitter.com/@<%= @developer.username %>" target=_blank class="button is-primary is-outlined has-twitter-text is-disabled">Submit</a>
+        <%= link_to edit_team_developer_path([@team, @developer]), class: "button is-secondary" do %>
+          <span class="icon"><i class="fa fa-edit"></i></span><span>  Add</span>
+        <% end %>
       </div>
     </div>
   </div>
