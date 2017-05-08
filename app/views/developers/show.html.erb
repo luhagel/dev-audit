@@ -39,13 +39,13 @@
   <div class="columns is-multiline">
     <% if !@recent_tweets.nil? %>
       <%= render 'datapanels/twitter', object: @recent_tweets %>
-    <% elsif %>
+    <% elsif logged_in? && owner?(@team) %>
      <%= render 'datapanels/twitter_add' %>
     <% end %>
 
     <% if !@recent_stories.nil? %>
       <%= render 'datapanels/medium', object: @recent_stories %>
-    <% elsif %>
+    <% elsif logged_in? && owner?(@team) %>
       <%= render 'datapanels/medium_add' %>
     <% end %>
   </div>
