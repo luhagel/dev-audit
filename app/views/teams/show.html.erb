@@ -70,14 +70,18 @@
   <div class="column is-half is-offset-one-quarter">
     <div class="box is-fullwidth">
       <div class="card-content has-text-centered">
-        <h4 class="title">There is nothing here yet!</h4>
-        <% if logged_in? %>
-          <p>Start by adding your first develper below!</p>
-          <br>
-          <%= link_to 'Add', new_team_developer_path(@team), class: "button is-primary is-outlined" %>
-        <% else %>
-          <p class="has-text-centered">The team owner hasn't added any developers yet, check back later!</p>
-        <% end %>
+        <% if params[:search] %>
+          <h4 class="title">Nobody matches your criteria!</h4>
+        <% elsif %>
+          <h4 class="title">There is nothing here yet!</h4>
+          <% if logged_in? %>
+            <p>Start by adding your first develper below!</p>
+            <br>
+            <%= link_to 'Add', new_team_developer_path(@team), class: "button is-primary is-outlined" %>
+          <% else %>
+            <p class="has-text-centered">The team owner hasn't added any developers yet, check back later!</p>
+          <% end %>
+        <% end%>
       </div>
     </div>
   </div>
