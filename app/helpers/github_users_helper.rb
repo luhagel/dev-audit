@@ -31,9 +31,14 @@ module GithubUsersHelper
     save_counter = 0
     @github_users.each do |u|
       puts u.login
+      u.pull_github_data
       u.contributions = get_contrib_data(u.login)
       u.prefered_languages = get_prefered_languages(u.login).to_a
-      save_counter += 1 if u.save
+      if u.save
+        save_counter += 1 if u.save
+      else
+        puts 'FAIL'
+      end
     end
     puts 'SUCCESS: Updated ' + String(save_counter)
   end
