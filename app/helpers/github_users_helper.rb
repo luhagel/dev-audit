@@ -35,7 +35,6 @@ module GithubUsersHelper
       u.prefered_languages = get_prefered_languages(u.login).to_a
       save_counter += 1 if u.save
     end
-    puts 'SUCCESS: Updated ' + String(save_counter) + '/'
-    + String(@github_users.count) + ' Developers!'
+    puts 'SUCCESS: Updated ' + String(save_counter)
   end
 end
