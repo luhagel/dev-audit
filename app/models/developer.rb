@@ -11,5 +11,9 @@ class Developer < ApplicationRecord
     search_array += [search]
     joins(:github_user).where("github_users.name ILIKE ? OR github_users.login ILIKE ? OR ? ILIKE ANY(ARRAY[github_users.prefered_languages])", "%#{search}%", "%#{search}%", [search]).references(:github_user)
   end
+
+  def self.hireable(hireable)
+    where("github_users.hireable = ?", hireable)
+  end
 end
 

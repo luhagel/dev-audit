@@ -11,8 +11,10 @@ class TeamsController < ApplicationController
     elsif !owner?(@team) && !public?(@team)
       render '_not_owner'
     else
-      if params[:search]
-        @developers = @team.developers.search(params[:search]).references(:github_users).sort { |a, b| b.github_user.contributions.reduce(0, :+) <=> a.github_user.contributions.reduce(0, :+) }
+      if params[:search] && params[:hide_hired]
+        @developers = @team.developers.search(params[:search]).where("github_users.hireable = ?", true).references(:github_users).sort { |a, b| b.github_user.contributions.reduce(0, :+) <=> a.github_user.contributions.reduce(0, :+) }
+      elsif params[:search]
+         @developers = @team.developers.search(params[:search]).references(:github_users).sort { |a, b| b.github_user.contributions.reduce(0, :+) <=> a.github_user.contributions.reduce(0, :+) }
       else
         @developers = @team.developers.sort { |a, b| b.github_user.contributions.reduce(0, :+) <=> a.github_user.contributions.reduce(0, :+) }
       end
