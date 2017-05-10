@@ -36,6 +36,17 @@
 </section>
 <br>
 <section>
+  <div class="container has-text-centered">
+    <% if !@developer.resume_link.nil? %>
+      <%= link_to "Get Resume", @developer.resume_link, class: "button is-primary is-large", target: "_blank" %>
+    <% elsif owner? @team %>
+      <%= render 'datapanels/resume_add' %>
+    <% end %>
+  </div>
+</section>
+<br>
+<br>
+<section>
   <div class="columns is-multiline">
     <% if !@recent_tweets.nil? %>
       <%= render 'datapanels/twitter', object: @recent_tweets %>
@@ -50,14 +61,4 @@
     <% end %>
   </div>
 </section>
-<br>
-<br>
-<section>
-  <div class="container has-text-centered">
-    <% if !@developer.resume_link.nil? %>
-      <%= link_to "Get Resume", @developer.resume_link, class: "button is-primary is-large", target: "_blank" %>
-    <% elsif owner? @team %>
-      <%= render 'datapanels/resume_add' %>
-    <% end %>
-  </div>
-</section>
+
