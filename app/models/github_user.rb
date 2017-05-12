@@ -7,6 +7,7 @@ class GithubUser < ApplicationRecord
 
   def pull_github_data
     user_data = Octokit.user login
+    puts user_data
 
     self.user_id = user_data.id
     self.name = user_data.name
