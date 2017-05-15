@@ -6,7 +6,9 @@ class GithubUser < ApplicationRecord
   validates :login, presence: true
 
   def pull_github_data
-    user_data = Octokit.user login
+    gh_client = Octokit::Client.new(access_token: ENV['GITHUB_ACCESS_TOKEN'])
+    user_data = gh_client.user login
+    puts user_data.email
 
     self.user_id = user_data.id
     self.name = user_data.name

@@ -35,6 +35,19 @@ class TeamsController < ApplicationController
     end
   end
 
+  def edit
+    @team = Team.find(params[:id])
+  end
+
+  def update
+    @team = Team.find(params[:id])
+    if @developer.update_attributes(team_params)
+      redirect_to @team
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     @team = Team.find(params[:id])
 
@@ -49,7 +62,7 @@ class TeamsController < ApplicationController
 
   private
   def team_params
-    params.require(:team).permit(:name, :user_id, :is_public)
+    params.require(:team).permit(:name, :user_id, :is_public, :groups)
   end
 
   def require_login

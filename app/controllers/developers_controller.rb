@@ -9,7 +9,7 @@ class DevelopersController < ApplicationController
     @team = Team.find(params[:team_id])
     @developer = Developer.new
   end
-
+0
   def create
     @team = Team.find(params[:team_id])
     @developer = Developer.new(developer_params)
@@ -99,7 +99,7 @@ class DevelopersController < ApplicationController
   private
 
   def developer_params
-    params.require(:developer).permit(:username, :team_id, :medium_username, :twitter_username, :resume_link)
+    params.require(:developer).permit(:username, :team_id, :medium_username, :twitter_username, :resume_link, :email)
   end
 
   def require_login

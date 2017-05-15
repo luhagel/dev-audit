@@ -35,7 +35,7 @@ module GithubUsersHelper
       u.contributions = get_contrib_data(u.login)
       u.prefered_languages = get_prefered_languages(u.login).to_a
       if u.save
-        save_counter += 1 if u.save
+        save_counter += 1
       else
         puts 'FAIL'
       end

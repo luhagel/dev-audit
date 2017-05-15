@@ -1,8 +1,9 @@
-<section>
-  <div class="container">
+
+<div class="container">
+  <section>
     <div class="columns">
-      <div class="column is-12">
-        <div class="box is-fullwidth datapanel primary">
+      <div class="column is-10">
+        <div class="is-fullwidth">
           <div class="level">
             <div class="level-left">
               <h1 class="title"><b>Overview: <%= @developer.github_user.name ? @developer.github_user.name : @developer.github_user.login %></b></h1>
@@ -26,39 +27,26 @@
         </div>
       </div>
     </div>
+</section>
+<br>
+<section>
+  <div class="columns">
+    <div class="column is-10">
+      <%= render @developer.github_user %>
+    </div>
   </div>
 </section>
 <br>
 <section>
-  <div class="container">
-    <%= render @developer.github_user %>
+  <div class="columns">
+    <div class="column is-10 has-text-centered">
+      <% if !@developer.resume_link.nil? %>
+        <%= link_to "Get Resume", @developer.resume_link, class: "button is-primary is-large", target: "_blank" %>
+      <% elsif owner? @team %>
+        <%= render 'datapanels/resume_add' %>
+      <% end %>
+    </div>
   </div>
 </section>
-<br>
-<section>
-  <div class="container has-text-centered">
-    <% if !@developer.resume_link.nil? %>
-      <%= link_to "Get Resume", @developer.resume_link, class: "button is-primary is-large", target: "_blank" %>
-    <% elsif owner? @team %>
-      <%= render 'datapanels/resume_add' %>
-    <% end %>
-  </div>
-</section>
-<br>
-<br>
-<section>
-  <div class="columns is-multiline">
-    <% if !@recent_tweets.nil? %>
-      <%= render 'datapanels/twitter', object: @recent_tweets %>
-    <% elsif logged_in? && owner?(@team) %>
-     <%= render 'datapanels/twitter_add' %>
-    <% end %>
-
-    <% if !@recent_stories.nil? %>
-      <%= render 'datapanels/medium', object: @recent_stories %>
-    <% elsif logged_in? && owner?(@team) %>
-      <%= render 'datapanels/medium_add' %>
-    <% end %>
-  </div>
-</section>
+</div>
 
