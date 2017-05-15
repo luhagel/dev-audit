@@ -9,7 +9,7 @@ class DevelopersController < ApplicationController
     @team = Team.find(params[:team_id])
     @developer = Developer.new
   end
-0
+
   def create
     @team = Team.find(params[:team_id])
     @developer = Developer.new(developer_params)
@@ -39,7 +39,7 @@ class DevelopersController < ApplicationController
   end
 
   def show
-    @team = Team.find(params[:team_id])
+    @team = Team.find(params[:team_id])             
     @developer = Developer.find(params[:id])
 
     twitter_client = Twitter::REST::Client.new do |config|
