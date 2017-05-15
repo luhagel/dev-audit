@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504061847) do
+ActiveRecord::Schema.define(version: 20170515065058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170504061847) do
     t.string "medium_username", default: ""
     t.string "twitter_username", default: ""
     t.string "resume_link"
+    t.string "email"
   end
 
   create_table "github_users", id: :serial, force: :cascade do |t|
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170504061847) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.boolean "is_public", default: false
+    t.string "groups", default: [], array: true
     t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
