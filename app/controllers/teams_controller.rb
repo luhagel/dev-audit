@@ -2,6 +2,8 @@ class TeamsController < ApplicationController
   include TeamsHelper
   before_action :require_login, only: [:index, :new, :create]
 
+  layout :team_layout
+
   def show
     @team = Team.find(params[:id])
 
@@ -78,5 +80,9 @@ class TeamsController < ApplicationController
       flash[:error] = "You must be logged in to access this section"
       redirect_to login_url
     end
+  end
+
+  def team_layout
+    params[:presentation] ? "presentation" : "application"
   end
 end

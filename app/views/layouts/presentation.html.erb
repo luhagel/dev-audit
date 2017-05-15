@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>>dev status_</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'google_analytics' %>
+  </head>
+
+  <body class="is-fullheight">
+    <div class="columns">
+      <%= render 'topnav' %>
+
+      <main class="column is-12">
+        <div class="container" id="content-wrapper">
+          <% flash.each do |message_type, message| %>
+            <div class="notification is-info">
+              <%= message %>
+            </div>
+          <% end %>
+          <%= yield %>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -2,6 +2,8 @@
 class DevelopersController < ApplicationController
   include DevelopersHelper
 
+  layout :dev_layout
+
   before_action :require_login, only: [:new, :create, :destroy]
   before_action :require_ownership, only: [:destroy, :edit, :update]
 
@@ -125,5 +127,9 @@ class DevelopersController < ApplicationController
     response = http.request(request)
     puts response.code.to_s + ': ' + url
     response.code.to_i == 200
+  end
+
+  def dev_layout
+    params[:presentation] ? "presentation" : "application"
   end
 end
