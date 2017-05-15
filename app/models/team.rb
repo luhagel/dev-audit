@@ -4,5 +4,7 @@ class Team < ApplicationRecord
   has_many :memberships
   has_many :developers, through: :memberships
 
+  serialize :groups
+
   validates :name, presence: true
 end

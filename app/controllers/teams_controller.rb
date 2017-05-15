@@ -11,13 +11,21 @@ class TeamsController < ApplicationController
     elsif !owner?(@team) && !public?(@team)
       render '_not_owner'
     else
-      if params[:search] && params[:hide_hired]
-        @developers = @team.developers.search(params[:search]).where("github_users.hireable = ?", true).references(:github_users).sort { |a, b| b.github_user.contributions.reduce(0, :+) <=> a.github_user.contributions.reduce(0, :+) }
-      elsif params[:search]
-         @developers = @team.developers.search(params[:search]).references(:github_users).sort { |a, b| b.github_user.contributions.reduce(0, :+) <=> a.github_user.contributions.reduce(0, :+) }
-      else
-        @developers = @team.developers.sort { |a, b| b.github_user.contributions.reduce(0, :+) <=> a.github_user.contributions.reduce(0, :+) }
+      @developers = @team.developers
+
+      if params[:group]
+        @developers = @developers.by_group(params[:group], @team.groups)
       end
+
+      if params[:hide_hired]
+        @developers = @developers.where("github_users.hireable = ?", true).references(:github_users)
+      end
+
+      if params[:search]
+         @developers = @developers.search(params[:search]).references(:github_users)
+      end
+
+      @developers.sort { |a, b| b.github_user.contributions.reduce(0, :+) <=> a.github_user.contributions.reduce(0, :+) }
     end
   end
 
@@ -41,7 +49,7 @@ class TeamsController < ApplicationController
 
   def update
     @team = Team.find(params[:id])
-    if @developer.update_attributes(team_params)
+    if @team.update_attributes(team_params)
       redirect_to @team
     else
       render 'edit'
