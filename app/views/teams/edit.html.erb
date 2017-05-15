@@ -1,0 +1,24 @@
+<div class="columns">
+  <div class="column is-half is-offset-one-quarter">
+    <div class="box is-fullwidth has-text-centered">
+      <h1 class="title card-form-header">Edit <%= @team.name %></h1>
+      <div class="card-content">
+        <%= form_for @team do |team| %>
+          <input name="_method" type="hidden" value="patch" />
+          <p class="control">
+            <%= team.label :name, "Name", class: 'label' %>
+            <%= team.text_field :name, placeholder: "Team Name", class: 'Disabled input', disabled: true %>
+            <br>
+            <%= team.label :groups, "Allow filtering by custom groups", class: 'label' %>
+            <%= team.text_field :groups, placeholder: "Groups String", class: 'input' %>
+            <br>
+            <%= team.check_box :is_public, id:"is_public"%>
+            <%= team.label "Make the team public?", for:"is_public", id:"is_public", class: 'checkbox' %>
+          </p>
+          <br>
+          <p class="control"><%= team.submit "Save Changes", class: "button is-primary is-outlined" %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
