@@ -13,7 +13,7 @@
       <%= form_tag team_path, :method => "get", id: "search-form", class: "searchbox" do %>
         <div class="field">
           <%= check_box_tag :hide_hired, params[:hide_hired] %>
-            <%= label "Hide hired developers", "Hide hired developers", for:"hide_hired", class: 'checkbox' %>
+          <%= label "Hide hired developers", "Hide hired developers", for:"hide_hired", class: 'checkbox' %>
         </div>
         <div class="field has-addons">
           <p class="control is-expanded">
@@ -21,6 +21,7 @@
           </p>
           <p class="control">
             <%= submit_tag "Search", :name => nil, class: "button is-primary" %>
+            <%= link_to "Reset Filters", @team, class: "button is-primary is-outlined" %>
           </p>
         </div>
       <% end %>
@@ -31,44 +32,44 @@
   <% @developers.each do |dev| %>
     <div class="column is-4">
       <%= link_to [@team, dev] do %>
-        <div class="box is-fullwidth media datapanel primary">
+        <div class="box is-fullwidth media">
           <figure class="media-left">
             <p class="image is-64x64">
               <img src="https://avatars1.githubusercontent.com/u/<%= dev.github_user.user_id %>?v=3&s=128" class="github-avatar">
             </p>
             <div class="level-center">
               <div class="level-item">
-                <% if dev.github_user.hireable %>
-                  <span class="tag is-outlined is-success hired-status">
+              <% if dev.github_user.hireable %>
+                <span class="tag is-outlined is-success hired-status">
                   Hireable
                 </span>
-                  <% else %>
-                    <span class="tag is-outlined is-danger hired-status">
-                  Hired
+              <% else %>
+                <span class="tag is-outlined is-danger hired-status">
+                 Hired
                 </span>
-                    <% end %>
-              </div>
+              <% end %>
             </div>
-          </figure>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong><%= dev.github_user.name ? dev.github_user.name : dev.github_user.login %></strong> <small>@<%= dev.github_user.login %></small>
+          </div>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong><%= dev.github_user.name ? dev.github_user.name : dev.github_user.login %></strong> <small>@<%= dev.github_user.login %></small>
+              <br>
+              <%= render 'github_users/contrib_graph', contribs: dev.github_user.contributions %>
                 <br>
-                <%= render 'github_users/contrib_graph', contribs: dev.github_user.contributions %>
-                  <br>
-                  <span>
-                <% dev.github_user.prefered_languages.each do |lang| %>
-                  <span class="tag is-primary"><%= lang %></span>
-                  <% end %>
-                    </span>
+                <span>
+              <% dev.github_user.prefered_languages.each do |lang| %>
+                <span class="tag is-primary"><%= lang %></span>
+              <% end %>
+              </span>
               </p>
             </div>
           </div>
         </div>
-        <% end %>
-    </div>
     <% end %>
+  </div>
+<% end %>
 </div>
 <% if @developers.count == 0 %>
   <div class="columns">

@@ -2,6 +2,8 @@
 class DevelopersController < ApplicationController
   include DevelopersHelper
 
+  layout :dev_layout
+
   before_action :require_login, only: [:new, :create, :destroy]
   before_action :require_ownership, only: [:destroy, :edit, :update]
 
@@ -9,7 +11,7 @@ class DevelopersController < ApplicationController
     @team = Team.find(params[:team_id])
     @developer = Developer.new
   end
-0
+
   def create
     @team = Team.find(params[:team_id])
     @developer = Developer.new(developer_params)
@@ -39,7 +41,7 @@ class DevelopersController < ApplicationController
   end
 
   def show
-    @team = Team.find(params[:team_id])
+    @team = Team.find(params[:team_id])             
     @developer = Developer.find(params[:id])
 
     twitter_client = Twitter::REST::Client.new do |config|
@@ -125,5 +127,9 @@ class DevelopersController < ApplicationController
     response = http.request(request)
     puts response.code.to_s + ': ' + url
     response.code.to_i == 200
+  end
+
+  def dev_layout
+    params[:presentation] ? "presentation" : "application"
   end
 end
