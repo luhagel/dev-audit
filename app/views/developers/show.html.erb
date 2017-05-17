@@ -1,7 +1,7 @@
 <div class="container">
   <section>
     <div class="columns">
-      <div class="column is-10">
+      <div class="column is-12">
         <div class="is-fullwidth">
           <div class="level">
             <div class="level-left">
@@ -30,7 +30,7 @@
   <br>
   <section>
     <div class="columns">
-      <div class="column is-10">
+      <div class="column is-12">
         <%= render @developer.github_user %>
       </div>
     </div>
@@ -38,7 +38,7 @@
   <br>
   <section>
     <div class="columns">
-      <div class="column is-10 has-text-centered">
+      <div class="column is-12 has-text-centered">
         <% if !@developer.resume_link.nil? %>
           <%= render 'datapanels/resume/show' %>
         <% elsif owner? @team %>
