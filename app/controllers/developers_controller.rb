@@ -44,33 +44,9 @@ class DevelopersController < ApplicationController
     @team = Team.find(params[:team_id])             
     @developer = Developer.find(params[:id])
 
-    twitter_client = Twitter::REST::Client.new do |config|
-      config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
-      config.consumer_secret     = ENV['TWIITER_CONSUMER_SECRET']
-      config.access_token        = ENV['TWIITER_ACCESS_TOKEN']
-      config.access_token_secret = ENV['TWIITER_ACCESS_SECRET']
-    end
     unless @developer.twitter_username == ''
-      @recent_tweets = []
-      @twitter_user = twitter_client.user(@developer.twitter_username)
-      twitter_client.user_timeline(@developer.twitter_username)[0..2].each do |tweet|
-        @recent_tweets += [twitter_client.status(tweet.id)]
-      end
+      @recent_tweets = get_tweets(@developer)
     end
-    unless @developer.medium_username == ''
-      @recent_stories = []
-
-      # Disable Medium for now
-      # begin
-      #   @recent_stories = MediumScraper::Post.latest @developer.medium_username
-      # rescue JSON::ParserError
-      #   $stderr.print 'json parsing error'
-      #   @recent_stories = []
-      #   @recent_stories[:user] = []
-      #   @recent_stories[:user][:total_posts] = 0
-      # end
-    end
-
   end
 
   def edit
@@ -127,6 +103,23 @@ class DevelopersController < ApplicationController
     response = http.request(request)
     puts response.code.to_s + ': ' + url
     response.code.to_i == 200
+  end
+
+  def get_tweets(developer)
+    twitter_client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+      config.consumer_secret     = ENV['TWIITER_CONSUMER_SECRET']
+      config.access_token        = ENV['TWIITER_ACCESS_TOKEN']
+      config.access_token_secret = ENV['TWIITER_ACCESS_SECRET']
+    end
+
+    recent_tweets = []
+    @twitter_user = twitter_client.user(developer.twitter_username)
+    twitter_client.user_timeline(developer.twitter_username)[0..2].each do |tweet|
+      recent_tweets += [twitter_client.status(tweet.id)]
+    end
+
+    @recent_tweets
   end
 
   def dev_layout
