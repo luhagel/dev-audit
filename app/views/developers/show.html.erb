@@ -40,6 +40,17 @@
     <div class="columns">
       <div class="column is-12 has-text-centered">
         <% if !@developer.resume_link.nil? %>
+          <%= render 'datapanels/instructor/show' %>
+        <% elsif owner? @team %>
+          <%= render 'datapanels/instructor/add' %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="columns">
+      <div class="column is-12 has-text-centered">
+        <% if !@developer.instructor_recommendation.nil? %>
           <%= render 'datapanels/resume/show' %>
         <% elsif owner? @team %>
           <%= render 'datapanels/resume/add' %>

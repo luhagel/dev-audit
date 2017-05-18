@@ -1,0 +1,14 @@
+<div class="box is-fullwidth">
+  <header class="level has-text-centered">
+    <p class="title is-5">
+      <span class="icon has-primary-text"><i class="fa fa-institution"></i></span> You haven't added an instructor recommendation for <%= @developer.github_user.name %> yet!
+    </p>
+  </header>
+  <div class="level">
+    <div class="level-item has-text-centered">
+      <%= link_to edit_team_developer_path([@team, @developer]), class: "button is-secondary" do %>
+        <span class="icon"><i class="fa fa-edit"></i></span><span>  Add</span>
+      <% end %>
+    </div>
+  </div>
+</div>
