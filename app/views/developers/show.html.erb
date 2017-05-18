@@ -50,7 +50,7 @@
   <section>
     <div class="columns">
       <div class="column is-12 has-text-centered">
-        <% if !@developer.resume_link.nil? %>
+        <% if !@developer.instructor_recommendation.nil? %>
           <%= render 'datapanels/resume/show' %>
         <% elsif owner? @team %>
           <%= render 'datapanels/resume/add' %>
