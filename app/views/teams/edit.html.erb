@@ -10,7 +10,7 @@
             <%= team.text_field :name, placeholder: "Team Name", class: 'Disabled input', disabled: true %>
             <br>
             <%= team.label :groups, "Allow filtering by custom groups", class: 'label' %>
-            <%= team.text_field :groups, placeholder: "Groups String", class: 'input' %>
+            <%= team.text_area :groups, placeholder: "Groups String", class: 'textarea' %>
             <br>
             <%= team.check_box :is_public, id:"is_public"%>
             <%= team.label "Make the team public?", for:"is_public", id:"is_public", class: 'checkbox' %>
