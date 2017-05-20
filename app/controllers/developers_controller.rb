@@ -77,7 +77,14 @@ class DevelopersController < ApplicationController
   private
 
   def developer_params
-    params.require(:developer).permit(:username, :team_id, :medium_username, :twitter_username, :resume_link, :email, :instructor_recommendation)
+    params.require(:developer).permit(:username,
+                                      :team_id,
+                                      :medium_username,
+                                      :twitter_username,
+                                      :resume_link,
+                                      :email,
+                                      :instructor_recommendation,
+                                      :bio)
   end
 
   def require_login

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518122602) do
+ActiveRecord::Schema.define(version: 20170520135550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170518122602) do
     t.string "resume_link"
     t.string "email", default: "N/A"
     t.text "instructor_recommendation"
+    t.text "bio"
   end
 
   create_table "github_users", id: :serial, force: :cascade do |t|

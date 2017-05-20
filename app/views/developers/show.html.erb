@@ -39,6 +39,18 @@
   <section>
     <div class="columns">
       <div class="column is-12 has-text-centered">
+        <% if !@developer.bio.nil? %>
+          <%= render 'datapanels/bio/show' %>
+        <% elsif owner? @team %>
+          <%= render 'datapanels/bio/add' %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+  <br>
+  <section>
+    <div class="columns">
+      <div class="column is-12 has-text-centered">
         <% if !@developer.instructor_recommendation.nil? %>
           <%= render 'datapanels/instructor/show' %>
         <% elsif owner? @team %>
