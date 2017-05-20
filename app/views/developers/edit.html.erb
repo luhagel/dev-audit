@@ -12,8 +12,10 @@
             <%= dev.text_field :twitter_username, placeholder: "Twitter Username", class: 'input' %>
             <%= dev.label :email, "Email Address", class: 'label' %>
             <%= dev.text_field :email, placeholder: "test@example.com", class: 'input' %>
-            <%= dev.label :resume_link, "Instructor Recommendation", class: 'label' %>
+            <%= dev.label :instructor_recommendation, "Instructor Recommendation", class: 'label' %>
             <%= dev.text_area :instructor_recommendation, placeholder: "X is awesome at...", class: 'textarea' %>
+            <%= dev.label :bio, "Short Bio", class: 'label' %>
+            <%= dev.text_area :bio, placeholder: "I am....", class: 'textarea' %>
             <%= dev.label :resume_link, "Resume Link", class: 'label' %>
             <%= dev.text_field :resume_link, placeholder: "https://linktoresume.com", class: 'input' %>
           </p>
