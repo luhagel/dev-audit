@@ -34,6 +34,6 @@ class Developer < ApplicationRecord
   end
 
   def self.hireable(hireable)
-    where("github_users.hireable = ?", hireable)
+    joins(:github_user).where("github_users.hireable = ?", hireable)
   end
 end
