@@ -20,11 +20,11 @@ class TeamsController < ApplicationController
       end
 
       if params[:hide_hired]
-        @developers.hireable(true).sort { |a, b| b.github_user.contributions.reduce(0, :+) <=> a.github_user.contributions.reduce(0, :+) }
+        @developers = @developers.hireable(true).sort { |a, b| b.github_user.contributions.reduce(0, :+) <=> a.github_user.contributions.reduce(0, :+) }
       end
 
       if params[:search]
-         @developers.search(params[:search]).sort { |a, b| b.github_user.contributions.reduce(0, :+) <=> a.github_user.contributions.reduce(0, :+) }
+         @developers = @developers.search(params[:search]).sort { |a, b| b.github_user.contributions.reduce(0, :+) <=> a.github_user.contributions.reduce(0, :+) }
       end
     end
   end

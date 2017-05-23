@@ -30,14 +30,6 @@
   <br>
   <section>
     <div class="columns">
-      <div class="column is-12">
-        <%= render @developer.github_user %>
-      </div>
-    </div>
-  </section>
-  <br>
-  <section>
-    <div class="columns">
       <div class="column is-12 has-text-centered">
         <% if !@developer.bio.nil? %>
           <%= render 'datapanels/bio/show' %>
@@ -59,6 +51,15 @@
       </div>
     </div>
   </section>
+  <br>
+  <section>
+    <div class="columns">
+      <div class="column is-12">
+        <%= render @developer.github_user %>
+      </div>
+    </div>
+  </section>
+  <br>
   <section>
     <div class="columns">
       <div class="column is-12 has-text-centered">

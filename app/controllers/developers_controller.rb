@@ -130,13 +130,20 @@ class DevelopersController < ApplicationController
   end
 
   def dev_layout
-    if cookies['pres_mode'] == 'true' or params[:presentation]
+    if params[:presentation] == 'on'
       cookies[:pres_mode] = {
         value: 'true'
       }
-      return 'presentation'
+    elsif params[:presentation] == 'off'
+      cookies[:pres_mode] = {
+        value: 'false'
+      }
     end
 
+    if cookies['pres_mode'] == 'true'
+      return 'presentation'
+    end
+    
     return 'application'
   end
 end
