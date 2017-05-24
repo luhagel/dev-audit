@@ -11,10 +11,6 @@
       <h4 class="subtitle">Please note that some people might not push all their work to Github, work in private repositories or on a feature branch.</h4>
       <hr>
       <%= form_tag team_path, :method => "get", id: "search-form", class: "searchbox" do %>
-        <div class="field">
-          <%= check_box_tag :hide_hired, params[:hide_hired] %>
-          <%= label "Hide hired developers", "Hide hired developers", for:"hide_hired", class: 'checkbox' %>
-        </div>
         <div class="field has-addons">
           <p class="control is-expanded">
             <%= text_field_tag :search, params[:search], placeholder: "Search by language, eg. Swift, Javascript, Python, Ruby", class: "input" %>
